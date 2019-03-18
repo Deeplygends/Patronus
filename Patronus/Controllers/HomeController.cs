@@ -26,5 +26,10 @@ namespace Patronus.Controllers
 
             return View();
         }
+
+        public ActionResult MovieSearch()
+        {
+            return View();
+        }
     }
 }
