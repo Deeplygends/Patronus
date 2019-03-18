@@ -6,21 +6,23 @@
 <h2>Movie Search</h2>
 <div>
     <input id="movie_title" />
-    <button onclick="getomdb()">OMDb</button>
+    <button onclick="getomdb(false)">OMDb single</button>
+    <button onclick="getomdb(true)">OMDb several</button>
     <div class="movie_response">
 
     </div>
 </div>
 
 <script>
-    function getomdb() {
+    function getomdb(several) {
         $.ajax({
             url: "/api/MovieApi",
             type: "get",
             contentType: 'application/json; charset=utf-8',
             dataType: "json",
             data: {
-                title: $('#movie_title').val()
+                title: $('#movie_title').val(),
+                several: several
             },
             success: function (data) {
                 $('.movie_response').empty();

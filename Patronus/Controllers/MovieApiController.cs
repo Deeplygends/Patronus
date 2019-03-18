@@ -10,16 +10,55 @@ namespace Patronus.Controllers
 {
     public class MovieApiController : ApiController
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="several">True if the user wants several results.</param>
+        /// <returns></returns>
         [HttpGet]
-        public string Movie(string title)
+        public string Movie(string title, bool several)
         {
-            return GetOMDbResult("", title, "", null, "", "", "");
+            return GetOMDbResult(title, "", null, "", "", "", null, several);
         }
 
-        public string GetOMDbResult(string idIMDb, string title, string type, int? year, string plot, string datatype, string callback)
+        public string GetOMDbResult(string title, string type, int? year, string plot, string datatype, string callback,int? page, bool several)
         {
             string omdbkey = System.Configuration.ConfigurationManager.AppSettings["OMDbApiKey"];
-            HttpWebRequest WebReq = (HttpWebRequest)WebRequest.Create(string.Format("http://www.omdbapi.com/?apikey=" + omdbkey + "&s=" + title));
+            string parameters = "apikey=" + omdbkey;
+            if (several)
+            {
+                parameters += "&s=" + title;
+            }
+            else
+            {
+                parameters += "&t=" + title;
+            }
+            if(type != "" && (type == "movie" || type == "series" || type == "episode"))
+            {
+                parameters += "&type=" + type;
+            }
+            if (year != null)
+            {
+                parameters += "&y=" + year;
+            }
+            if (plot != "" && !several && (plot == "full" || plot == "short"))
+            {
+                parameters += "&plot=" + plot;
+            }
+            if (datatype != "" && (datatype == "json" || datatype == "xml"))
+            {
+                parameters += "&r=" + datatype;
+            }
+            if (callback != "")
+            {
+                parameters += "&callback=" + callback;
+            }
+            if (page != null && several)
+            {
+                parameters += "&page=" + page;
+            }
+            HttpWebRequest WebReq = (HttpWebRequest)WebRequest.Create(string.Format("http://www.omdbapi.com/?" + parameters));
 
             WebReq.Method = "GET";
 
