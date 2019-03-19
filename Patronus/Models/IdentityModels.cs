@@ -21,7 +21,7 @@ namespace Patronus.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("PatronusDBEntities", throwIfV1Schema: false)
         {
         }
 
