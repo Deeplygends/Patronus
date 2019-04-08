@@ -24,9 +24,9 @@
         <AssociationConnector Association="PatronusDBModel.AspNetUserRoles" />
         <AssociationConnector Association="PatronusDBModel.Membre" />
         <EntityTypeShape EntityType="PatronusDBModel.TypeOeuvre" Width="1.5" PointX="0.75" PointY="2.5" />
-        <EntityTypeShape EntityType="PatronusDBModel.Oeuvre" Width="1.5" PointX="7.875" PointY="8.375" />
         <EntityTypeShape EntityType="PatronusDBModel.Participe" Width="1.5" PointX="2.75" PointY="7" />
         <AssociationConnector Association="PatronusDBModel.fk_Participe_IdArtiste" />
+        <EntityTypeShape EntityType="PatronusDBModel.Oeuvre" Width="1.5" PointX="7.875" PointY="8.375" />
         <AssociationConnector Association="PatronusDBModel.fk_Oeuvre_IdContributeur" />
         <AssociationConnector Association="PatronusDBModel.fk_NoteOeuvre_IdOeuvre" />
         <AssociationConnector Association="PatronusDBModel.fk_Oeuvre_IdTypeOeuvre" />
@@ -36,7 +36,7 @@
         <AssociationConnector Association="PatronusDBModel.OeuvreTheme" />
         <AssociationConnector Association="PatronusDBModel.Realise" />
         <AssociationConnector Association="PatronusDBModel.SousOeuvre" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

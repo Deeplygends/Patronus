@@ -22,9 +22,9 @@ namespace Patronus.Models
             this.CreateurDe = new HashSet<Groupe>();
             this.NoteArtistes = new HashSet<NoteArtiste>();
             this.NoteOeuvres = new HashSet<NoteOeuvre>();
-            this.Oeuvres = new HashSet<Oeuvre>();
             this.AspNetRoles = new HashSet<AspNetRole>();
             this.MembreDe = new HashSet<Groupe>();
+            this.Oeuvres = new HashSet<Oeuvre>();
         }
     
         public string Id { get; set; }
@@ -51,10 +51,10 @@ namespace Patronus.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NoteOeuvre> NoteOeuvres { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Oeuvre> Oeuvres { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Groupe> MembreDe { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Oeuvre> Oeuvres { get; set; }
     }
 }
