@@ -17,12 +17,14 @@ namespace Patronus.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Oeuvre()
         {
-            this.Notes = new HashSet<NoteOeuvre>();
+            this.NoteOeuvres = new HashSet<NoteOeuvre>();
+            this.Participes = new HashSet<Participe>();
             this.Artistes = new HashSet<Artiste>();
             this.Organismes = new HashSet<Organisme>();
             this.Themes = new HashSet<Theme>();
-            this.Participants = new HashSet<Artiste>();
-            this.Realisateurs = new HashSet<Artiste>();
+            this.Artistes1 = new HashSet<Artiste>();
+            this.Oeuvre1 = new HashSet<Oeuvre>();
+            this.Oeuvres = new HashSet<Oeuvre>();
         }
     
         public long IdOeuvre { get; set; }
@@ -32,10 +34,14 @@ namespace Patronus.Models
         public Nullable<System.DateTime> DateCreation { get; set; }
         public Nullable<System.DateTime> DateAjout { get; set; }
         public string IdContributeur { get; set; }
+        public string IdAPI { get; set; }
     
-        public virtual AspNetUser Contributeur { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NoteOeuvre> Notes { get; set; }
+        public virtual ICollection<NoteOeuvre> NoteOeuvres { get; set; }
+        public virtual TypeOeuvre TypeOeuvre { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Participe> Participes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Artiste> Artistes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -43,9 +49,10 @@ namespace Patronus.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Theme> Themes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Artiste> Participants { get; set; }
+        public virtual ICollection<Artiste> Artistes1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Artiste> Realisateurs { get; set; }
-        public virtual TypeOeuvre TypeOeuvre { get; set; }
+        public virtual ICollection<Oeuvre> Oeuvre1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Oeuvre> Oeuvres { get; set; }
     }
 }

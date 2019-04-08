@@ -244,6 +244,9 @@
     <Compile Include="Models\Organisme.cs">
       <DependentUpon>DataBase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Participe.cs">
+      <DependentUpon>DataBase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\Theme.cs">
       <DependentUpon>DataBase.tt</DependentUpon>
@@ -332,7 +335,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
