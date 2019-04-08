@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Patronus.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -8,12 +9,25 @@ using Patronus.Models;
 
 namespace Patronus.Controllers
 {
+    
     public class SearchController : Controller
     {
-        // GET: Search
-        public ActionResult Search(String name)
+        private PatronusDBEntities db = new PatronusDBEntities();
+
+        public ActionResult SearchPattern()
         {
-            return View();
+            SearchViewModel s = new SearchViewModel();
+            s.Oeuvres = new List<Oeuvre>();
+            return View(s);
         }
+        [HttpPost]
+        public ActionResult SearchPattern(SearchViewModel model)
+        {
+            
+            model.Oeuvres = db.Oeuvres.Where(x => x.Label.Contains(model.SearchChain)).ToList();
+            return View(model);
+        }
+
+
     }
 }
