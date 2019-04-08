@@ -49,9 +49,8 @@ namespace Patronus.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Courrier électronique")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Pseudo")]
+        public string Pseudo { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -79,6 +78,9 @@ namespace Patronus.Models
         [Display(Name = "Confirmer le mot de passe ")]
         [Compare("Password", ErrorMessage = "Le mot de passe et le mot de passe de confirmation ne correspondent pas.")]
         public string ConfirmPassword { get; set; }
+        [Required]
+        [Display(Name = "Pseudo")]
+        public string Pseudo { get; set; }
     }
 
     public class ResetPasswordViewModel

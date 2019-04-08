@@ -17,7 +17,7 @@ namespace Patronus.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private PatronusDBEntities _db = new PatronusDBEntities();
         public AccountController()
         {
         }
@@ -72,10 +72,9 @@ namespace Patronus.Controllers
             {
                 return View(model);
             }
-
+            var result = await SignInManager.PasswordSignInAsync(model.Pseudo, model.Password, model.RememberMe, shouldLockout: false);
             // Ceci ne comptabilise pas les échecs de connexion pour le verrouillage du compte
             // Pour que les échecs de mot de passe déclenchent le verrouillage du compte, utilisez shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -151,7 +150,16 @@ namespace Patronus.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                //var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Pseudo, Email = model.Email };
+                if (_db.AspNetUsers.FirstOrDefault(x => x.Email.Equals(model.Email)) != null)
+                {
+                    @ViewBag.ErrorEmail = "This email is already used";
+                }
+                else if (_db.AspNetUsers.FirstOrDefault(x => x.UserName.Equals(model.Pseudo)) != null)
+                {
+                    @ViewBag.ErrorPseudo = "This pseudo is already used";
+                }
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

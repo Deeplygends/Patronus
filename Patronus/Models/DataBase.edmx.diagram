@@ -13,7 +13,6 @@
         <EntityTypeShape EntityType="PatronusDBModel.Groupe" Width="1.5" PointX="2.875" PointY="14.625" />
         <EntityTypeShape EntityType="PatronusDBModel.NoteArtiste" Width="1.5" PointX="0.5" PointY="13.375" />
         <EntityTypeShape EntityType="PatronusDBModel.NoteOeuvre" Width="1.5" PointX="5" PointY="6.75" />
-        <EntityTypeShape EntityType="PatronusDBModel.Oeuvre" Width="1.5" PointX="3" PointY="4.375" />
         <EntityTypeShape EntityType="PatronusDBModel.Organisme" Width="1.5" PointX="1" PointY="10.375" />
         <EntityTypeShape EntityType="PatronusDBModel.Theme" Width="1.5" PointX="3.75" PointY="9.75" />
         <AssociationConnector Association="PatronusDBModel.fk_NoteArtiste_IdArtiste" />
@@ -22,17 +21,21 @@
         <AssociationConnector Association="PatronusDBModel.fk_Groupe_IdCreateur" />
         <AssociationConnector Association="PatronusDBModel.fk_NoteArtiste_IdUser" />
         <AssociationConnector Association="PatronusDBModel.fk_NoteOeuvre_IdUser" />
+        <AssociationConnector Association="PatronusDBModel.AspNetUserRoles" />
+        <AssociationConnector Association="PatronusDBModel.Membre" />
+        <EntityTypeShape EntityType="PatronusDBModel.TypeOeuvre" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="PatronusDBModel.Oeuvre" Width="1.5" PointX="7.875" PointY="8.375" />
+        <EntityTypeShape EntityType="PatronusDBModel.Participe" Width="1.5" PointX="2.75" PointY="7" />
+        <AssociationConnector Association="PatronusDBModel.fk_Participe_IdArtiste" />
         <AssociationConnector Association="PatronusDBModel.fk_Oeuvre_IdContributeur" />
         <AssociationConnector Association="PatronusDBModel.fk_NoteOeuvre_IdOeuvre" />
-        <AssociationConnector Association="PatronusDBModel.AspNetUserRoles" />
+        <AssociationConnector Association="PatronusDBModel.fk_Oeuvre_IdTypeOeuvre" />
+        <AssociationConnector Association="PatronusDBModel.fk_Participe_IdOeuvre" />
         <AssociationConnector Association="PatronusDBModel.Favori" />
-        <AssociationConnector Association="PatronusDBModel.Membre" />
         <AssociationConnector Association="PatronusDBModel.OeuvreOrganisme" />
         <AssociationConnector Association="PatronusDBModel.OeuvreTheme" />
-        <AssociationConnector Association="PatronusDBModel.Participe" />
         <AssociationConnector Association="PatronusDBModel.Realise" />
-        <EntityTypeShape EntityType="PatronusDBModel.TypeOeuvre" Width="1.5" PointX="0.75" PointY="2.5" />
-        <AssociationConnector Association="PatronusDBModel.fk_Oeuvre_IdTypeOeuvre" />
+        <AssociationConnector Association="PatronusDBModel.SousOeuvre" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
