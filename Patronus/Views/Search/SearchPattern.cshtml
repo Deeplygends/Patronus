@@ -1,0 +1,35 @@
+﻿@model Patronus.Models.SearchViewModel
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+@using (Html.BeginForm("SearchPattern", "Search", FormMethod.Post))
+{
+    @Html.TextBoxFor(model => model.SearchChain)
+    <input type="submit" value="Search" />
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Realisateur</th>
+        </tr>
+    </thead>
+    @foreach (var oeuvre in Model.Oeuvres)
+    {
+        <tr>
+            <td>
+                @oeuvre.Label
+            </td>
+            <td>
+                @oeuvre.Realisateurs.FirstOrDefault().Nom @oeuvre.Realisateurs.FirstOrDefault().Prenom
+            </td>
+        </tr>
+
+
+        }
+</table>
+

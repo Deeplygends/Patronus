@@ -328,7 +328,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\MovieSearch.cshtml" />
-    <Content Include="Views\Search\Search.cshtml" />
+    <Content Include="Views\Search\SearchPattern.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
