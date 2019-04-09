@@ -19,12 +19,12 @@ namespace Patronus.Models
         {
             this.NoteOeuvres = new HashSet<NoteOeuvre>();
             this.Participes = new HashSet<Participe>();
-            this.EstFavoris = new HashSet<Artiste>();
+            this.InFavoriteListOf = new HashSet<Artiste>();
             this.Organismes = new HashSet<Organisme>();
             this.Themes = new HashSet<Theme>();
-            this.Realisateurs = new HashSet<Artiste>();
-            this.Enfants = new HashSet<Oeuvre>();
+            this.Artistes1 = new HashSet<Artiste>();
             this.Parents = new HashSet<Oeuvre>();
+            this.Enfants = new HashSet<Oeuvre>();
         }
     
         public long IdOeuvre { get; set; }
@@ -35,6 +35,7 @@ namespace Patronus.Models
         public Nullable<System.DateTime> DateAjout { get; set; }
         public string IdContributeur { get; set; }
         public string IdAPI { get; set; }
+        public string UrlImage { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -43,16 +44,16 @@ namespace Patronus.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Participe> Participes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Artiste> EstFavoris { get; set; }
+        public virtual ICollection<Artiste> InFavoriteListOf { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Organisme> Organismes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Theme> Themes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Artiste> Realisateurs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Oeuvre> Enfants { get; set; }
+        public virtual ICollection<Artiste> Artistes1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Oeuvre> Parents { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Oeuvre> Enfants { get; set; }
     }
 }

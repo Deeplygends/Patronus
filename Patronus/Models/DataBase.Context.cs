@@ -36,7 +36,7 @@ namespace Patronus.Models
         public virtual DbSet<Organisme> Organismes { get; set; }
         public virtual DbSet<Theme> Themes { get; set; }
         public virtual DbSet<TypeOeuvre> TypeOeuvres { get; set; }
-        public virtual DbSet<Oeuvre> Oeuvres { get; set; }
         public virtual DbSet<Participe> Participes { get; set; }
+        public virtual DbSet<Oeuvre> Oeuvres { get; set; }
     }
 }
