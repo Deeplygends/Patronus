@@ -19,8 +19,8 @@ namespace Patronus.Models
         {
             this.Notes = new HashSet<NoteArtiste>();
             this.Participes = new HashSet<Participe>();
-            this.Oeuvres = new HashSet<Oeuvre>();
-            this.Oeuvres1 = new HashSet<Oeuvre>();
+            this.OeuvresFavorites = new HashSet<Oeuvre>();
+            this.OeuvreRealisees = new HashSet<Oeuvre>();
         }
     
         public string IdArtiste { get; set; }
@@ -34,8 +34,8 @@ namespace Patronus.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Participe> Participes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Oeuvre> Oeuvres { get; set; }
+        public virtual ICollection<Oeuvre> OeuvresFavorites { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Oeuvre> Oeuvres1 { get; set; }
+        public virtual ICollection<Oeuvre> OeuvreRealisees { get; set; }
     }
 }

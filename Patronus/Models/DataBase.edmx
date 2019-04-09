@@ -124,6 +124,7 @@
           <Property Name="DateAjout" Type="date" />
           <Property Name="IdContributeur" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="IdAPI" Type="varchar" MaxLength="50" />
+          <Property Name="UrlImage" Type="varchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="OeuvreOrganisme">
           <Key>
@@ -720,8 +721,8 @@
           <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Notes" Relationship="PatronusDBModel.fk_NoteArtiste_IdArtiste" FromRole="Artiste" ToRole="NoteArtiste" />
           <NavigationProperty Name="Participes" Relationship="PatronusDBModel.fk_Participe_IdArtiste" FromRole="Artiste" ToRole="Participe" />
-          <NavigationProperty Name="Oeuvres" Relationship="PatronusDBModel.Favori" FromRole="Artiste" ToRole="Oeuvre" />
-          <NavigationProperty Name="Oeuvres1" Relationship="PatronusDBModel.Realise" FromRole="Artiste" ToRole="Oeuvre" />
+          <NavigationProperty Name="OeuvresFavorites" Relationship="PatronusDBModel.Favori" FromRole="Artiste" ToRole="Oeuvre" />
+          <NavigationProperty Name="OeuvreRealisees" Relationship="PatronusDBModel.Realise" FromRole="Artiste" ToRole="Oeuvre" />
           </EntityType>
         <EntityType Name="AspNetRole">
           <Key>
@@ -961,12 +962,13 @@
           <NavigationProperty Name="NoteOeuvres" Relationship="PatronusDBModel.fk_NoteOeuvre_IdOeuvre" FromRole="Oeuvre" ToRole="NoteOeuvre" />
           <NavigationProperty Name="TypeOeuvre" Relationship="PatronusDBModel.fk_Oeuvre_IdTypeOeuvre" FromRole="Oeuvre" ToRole="TypeOeuvre" />
           <NavigationProperty Name="Participes" Relationship="PatronusDBModel.fk_Participe_IdOeuvre" FromRole="Oeuvre" ToRole="Participe" />
-          <NavigationProperty Name="Artistes" Relationship="PatronusDBModel.Favori" FromRole="Oeuvre" ToRole="Artiste" />
+          <NavigationProperty Name="InFavoriteListOf" Relationship="PatronusDBModel.Favori" FromRole="Oeuvre" ToRole="Artiste" />
           <NavigationProperty Name="Organismes" Relationship="PatronusDBModel.OeuvreOrganisme" FromRole="Oeuvre" ToRole="Organisme" />
           <NavigationProperty Name="Themes" Relationship="PatronusDBModel.OeuvreTheme" FromRole="Oeuvre" ToRole="Theme" />
-          <NavigationProperty Name="Realisateurs" Relationship="PatronusDBModel.Realise" FromRole="Oeuvre" ToRole="Artiste" />
-          <NavigationProperty Name="Oeuvre1" Relationship="PatronusDBModel.SousOeuvre" FromRole="Oeuvre" ToRole="Oeuvre1" />
-          <NavigationProperty Name="Oeuvres" Relationship="PatronusDBModel.SousOeuvre" FromRole="Oeuvre1" ToRole="Oeuvre" />
+          <NavigationProperty Name="Artistes1" Relationship="PatronusDBModel.Realise" FromRole="Oeuvre" ToRole="Artiste" />
+          <NavigationProperty Name="Parents" Relationship="PatronusDBModel.SousOeuvre" FromRole="Oeuvre" ToRole="Oeuvre1" />
+          <NavigationProperty Name="Enfants" Relationship="PatronusDBModel.SousOeuvre" FromRole="Oeuvre1" ToRole="Oeuvre" />
+          <Property Name="UrlImage" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="fk_Oeuvre_IdContributeur">
           <End Type="PatronusDBModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -1182,6 +1184,7 @@
           <EntitySetMapping Name="Oeuvres">
             <EntityTypeMapping TypeName="PatronusDBModel.Oeuvre">
               <MappingFragment StoreEntitySet="Oeuvre">
+                <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
                 <ScalarProperty Name="IdAPI" ColumnName="IdAPI" />
                 <ScalarProperty Name="IdContributeur" ColumnName="IdContributeur" />
                 <ScalarProperty Name="DateAjout" ColumnName="DateAjout" />
