@@ -16,7 +16,7 @@ namespace Patronus.Tests.Controllers
         {
             SearchController controller = new SearchController();
 
-            ViewResult result = controller.Search("Tarzan") as ViewResult;
+            ViewResult result = controller.SearchPattern(new SearchViewModel(){SearchChain = "Tarzan"}) as ViewResult;
             Assert.IsNotNull(result);
       
             SearchViewModel model = result.Model as SearchViewModel;
@@ -32,7 +32,7 @@ namespace Patronus.Tests.Controllers
         {
             SearchController controller = new SearchController();
 
-            ViewResult result = controller.Search("Tarz") as ViewResult;
+            ViewResult result = controller.SearchPattern(new SearchViewModel(){SearchChain = "Tarz"}) as ViewResult;
             Assert.IsNotNull(result);
 
             SearchViewModel model = result.Model as SearchViewModel;
