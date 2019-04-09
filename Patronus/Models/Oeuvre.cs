@@ -22,7 +22,7 @@ namespace Patronus.Models
             this.Artistes = new HashSet<Artiste>();
             this.Organismes = new HashSet<Organisme>();
             this.Themes = new HashSet<Theme>();
-            this.Realisateurs = new HashSet<Artiste>();
+            this.Artistes1 = new HashSet<Artiste>();
             this.Oeuvre1 = new HashSet<Oeuvre>();
             this.Oeuvres = new HashSet<Oeuvre>();
         }
@@ -49,7 +49,7 @@ namespace Patronus.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Theme> Themes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Artiste> Realisateurs { get; set; }
+        public virtual ICollection<Artiste> Artistes1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Oeuvre> Oeuvre1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
