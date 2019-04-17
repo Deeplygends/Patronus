@@ -192,6 +192,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MovieApiController.cs" />
+    <Compile Include="Controllers\OeuvresController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -339,6 +340,11 @@
     <Content Include="Views\Home\MovieSearch.cshtml" />
     <Content Include="Views\Search\SearchPattern.cshtml" />
     <Content Include="Views\Home\MusicSearch.cshtml" />
+    <Content Include="Views\Oeuvres\Create.cshtml" />
+    <Content Include="Views\Oeuvres\Delete.cshtml" />
+    <Content Include="Views\Oeuvres\Details.cshtml" />
+    <Content Include="Views\Oeuvres\Edit.cshtml" />
+    <Content Include="Views\Oeuvres\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
