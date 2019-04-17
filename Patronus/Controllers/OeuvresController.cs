@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Patronus.Models;
 
 namespace Patronus.Controllers
@@ -39,7 +41,6 @@ namespace Patronus.Controllers
         // GET: Oeuvres/Create
         public ActionResult Create()
         {
-            ViewBag.IdContributeur = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.IdTypeOeuvre = new SelectList(db.TypeOeuvres, "IdTypeOeuvre", "LabelType");
             return View();
         }
@@ -49,10 +50,12 @@ namespace Patronus.Controllers
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdOeuvre,IdTypeOeuvre,Label,Description,DateCreation,DateAjout,IdContributeur,IdAPI,UrlImage")] Oeuvre oeuvre)
+        public ActionResult Create([Bind(Include = "IdOeuvre,IdTypeOeuvre,Label,Description,DateCreation,UrlImage")] Oeuvre oeuvre)
         {
             if (ModelState.IsValid)
             {
+                oeuvre.DateAjout = DateTime.Now;
+                oeuvre.IdContributeur = User.Identity.GetUserId();
                 db.Oeuvres.Add(oeuvre);
                 db.SaveChanges();
                 return RedirectToAction("Index");
