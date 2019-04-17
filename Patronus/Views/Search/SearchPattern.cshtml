@@ -7,7 +7,7 @@
 
 @using (Html.BeginForm("SearchPattern", "Search", FormMethod.Post))
 {
-    @Html.TextBoxFor(model => model.SearchChain)
+    @Html.TextBoxFor(model => model.SearchChainOeuvres)
     <input type="submit" value="Search" />
 }
 
@@ -15,10 +15,8 @@
     <thead>
         <tr>
             <th>Titre</th>
-            <th>Realisateur</th>
             <th>Date de création</th>
             <th>Type</th>
-            <th>Thèmes</th>
         </tr>
     </thead>
     @foreach (var oeuvre in Model.Oeuvres)
@@ -28,16 +26,10 @@
                 @oeuvre.Label
             </td>
             <td>
-                @oeuvre.Realisateurs.FirstOrDefault().Nom @oeuvre.Realisateurs.FirstOrDefault().Prenom
-            </td>
-            <td>
                 @oeuvre.DateCreation
             </td>
             <td>
-                @oeuvre.TypeOeuvre
-            </td>
-            <td>
-                @oeuvre.Themes.FirstOrDefault().Label
+                @oeuvre.TypeOeuvre.LabelType
             </td>
         </tr>
 

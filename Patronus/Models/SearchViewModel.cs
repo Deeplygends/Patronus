@@ -7,7 +7,9 @@ namespace Patronus.Models
 {
     public class SearchViewModel
     {
-        public string SearchChain { get; set; }
+        public string SearchChainOeuvres { get; set; }
+
+        public string SearchChainArtistes { get; set; }
         public List<Oeuvre> Oeuvres { get; set; }
     }
 }
