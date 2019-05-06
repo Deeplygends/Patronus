@@ -9,8 +9,9 @@ namespace Patronus
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
-
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/bootstrap-datepicker.js",
+                        "~/Scripts/jquery-3.3.1.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
@@ -24,7 +25,9 @@ namespace Patronus
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/bootstrap-datepicker.css",
+                      "~/Content/bootstrap-datepicker3.css"));
         }
     }
 }
