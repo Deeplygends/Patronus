@@ -103,7 +103,6 @@ C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\Microsoft.Owin.Host.S
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\System.Net.Http.Formatting.dll
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\Patronus.pdb
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\Patronus.dll.config
-C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\EntityFramework.xml
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\Newtonsoft.Json.xml
@@ -124,7 +123,6 @@ C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\Microsoft.Owin.Securi
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\System.Web.Http.WebHost.xml
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\System.Net.Http.Formatting.xml
-C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\fr\EntityFramework.resources.dll
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\fr\System.Web.Helpers.resources.dll
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\fr\System.Web.Mvc.resources.dll
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\fr\System.Web.Razor.resources.dll
@@ -140,3 +138,7 @@ C:\Users\Micky\Documents\Patronus\Patronus.Tests\obj\Debug\Patronus.Tests.csproj
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\obj\Debug\Patronus.Tests.csproj.CopyComplete
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\obj\Debug\Patronus.Tests.dll
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\obj\Debug\Patronus.Tests.pdb
+C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\fr\Microsoft.Owin.resources.dll
+C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\fr\Microsoft.Owin.Security.resources.dll
+C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
