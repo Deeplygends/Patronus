@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Patronus.Models.Oeuvre>
 @{
     ViewBag.Title = "MovieSearch";
 }
@@ -13,14 +13,43 @@
     </select>
     <button onclick="getomdb(false)">OMDb single</button>
     <button onclick="getomdb(true)">OMDb several</button>
-    <div class="movie_response">
 
-    </div>
+    <table class="table">
+      
+            <tr>
+                <th>@Html.DisplayNameFor(model=>model.Label)</th>
+                <th>@Html.DisplayNameFor(model => model.DateCreation)</th>
+                <th>@Html.DisplayNameFor(model => model.TypeOeuvre.LabelType)</th>
+            </tr>
+       
+        @if (Model.Count() > 0)
+        {
+                foreach (var oeuvre in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modellist => oeuvre.Label)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modellist => oeuvre.DateCreation)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modellist => oeuvre.TypeOeuvre.LabelType)
+                        </td>
+                    </tr>
+
+
+                }
+        }
+        
+    </table>
+
 </div>
 
-<script>function getomdb(several) {
+<script>
+function getomdb(several) {
         $.ajax({
-            url: "/api/MovieApi",
+            url: "/OMDb/Movie",
             type: "get",
             contentType: 'application/json; charset=utf-8',
             dataType: "json",
@@ -35,11 +64,12 @@
                 page: null
             },
             success: function (data) {
-                $('.movie_response').empty();
-                $('.movie_response').append("<span>" + data + "</span>");
+                //$('.movie_response').empty();
+                //$('.movie_response').append("<span>" + data + "</span>");
             },
             error: function (e) {
-                alert("error");
+               // alert("error");
             }
         });
-    }</script>
+    }
+</script>

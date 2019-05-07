@@ -19,7 +19,8 @@ namespace Patronus.Controllers
         [HttpGet]
         public string Movie(string title, string type, int? year, string plot, string datatype, string callback, int? page, bool several)
         {
-            return new OMDbController().GetOMDbResult(title, type, year, plot, datatype, callback, page, several);
+            return  new OMDbController().GetOMDbResult(title, type, year, plot, datatype, callback, page, several);
+
         }
 
 
