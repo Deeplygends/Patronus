@@ -20,10 +20,14 @@ namespace Patronus.Controllers
             }
             Artiste artiste = new Artiste()
             {
-                Nom = name
+                IdArtiste = name,
+                Nom = name,
+                Prenom = ""
             };
             db.Artistes.Add(artiste);
+            db.Entry(artiste).State = System.Data.Entity.EntityState.Added;
             db.SaveChanges();
+
 
             l = db.Artistes.FirstOrDefault(m => m.Nom == name);
             return l.IdArtiste;
