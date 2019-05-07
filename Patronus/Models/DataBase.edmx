@@ -9,8 +9,8 @@
           <Key>
             <PropertyRef Name="IdArtiste" />
           </Key>
-          <Property Name="IdArtiste" Type="nvarchar" MaxLength="128" Nullable="false" StoreGeneratedPattern="None" />
-          <Property Name="Nom" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="IdArtiste" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="100" />
           <Property Name="Prenom" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="DateNaissance" Type="date" />
           <Property Name="Description" Type="varchar" MaxLength="1000" />
@@ -624,7 +624,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="PatronusDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="PatronusDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Artistes" EntityType="PatronusDBModel.Artiste" />
           <EntitySet Name="AspNetRoles" EntityType="PatronusDBModel.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="PatronusDBModel.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="PatronusDBModel.AspNetUserLogin" />
@@ -634,10 +633,6 @@
           <EntitySet Name="NoteOeuvres" EntityType="PatronusDBModel.NoteOeuvre" />
           <EntitySet Name="Organismes" EntityType="PatronusDBModel.Organisme" />
           <EntitySet Name="Themes" EntityType="PatronusDBModel.Theme" />
-          <AssociationSet Name="fk_NoteArtiste_IdArtiste" Association="PatronusDBModel.fk_NoteArtiste_IdArtiste">
-            <End Role="Artiste" EntitySet="Artistes" />
-            <End Role="NoteArtiste" EntitySet="NoteArtistes" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="PatronusDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
@@ -668,10 +663,6 @@
           </AssociationSet>
           <EntitySet Name="TypeOeuvres" EntityType="PatronusDBModel.TypeOeuvre" />
           <EntitySet Name="Participes" EntityType="PatronusDBModel.Participe" />
-          <AssociationSet Name="fk_Participe_IdArtiste" Association="PatronusDBModel.fk_Participe_IdArtiste">
-            <End Role="Artiste" EntitySet="Artistes" />
-            <End Role="Participe" EntitySet="Participes" />
-          </AssociationSet>
           <EntitySet Name="Oeuvres" EntityType="PatronusDBModel.Oeuvre" />
           <AssociationSet Name="fk_Oeuvre_IdContributeur" Association="PatronusDBModel.fk_Oeuvre_IdContributeur">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
@@ -689,10 +680,6 @@
             <End Role="Oeuvre" EntitySet="Oeuvres" />
             <End Role="Participe" EntitySet="Participes" />
           </AssociationSet>
-          <AssociationSet Name="Favori" Association="PatronusDBModel.Favori">
-            <End Role="Artiste" EntitySet="Artistes" />
-            <End Role="Oeuvre" EntitySet="Oeuvres" />
-          </AssociationSet>
           <AssociationSet Name="OeuvreOrganisme" Association="PatronusDBModel.OeuvreOrganisme">
             <End Role="Oeuvre" EntitySet="Oeuvres" />
             <End Role="Organisme" EntitySet="Organismes" />
@@ -701,29 +688,28 @@
             <End Role="Oeuvre" EntitySet="Oeuvres" />
             <End Role="Theme" EntitySet="Themes" />
           </AssociationSet>
-          <AssociationSet Name="Realise" Association="PatronusDBModel.Realise">
-            <End Role="Artiste" EntitySet="Artistes" />
-            <End Role="Oeuvre" EntitySet="Oeuvres" />
-          </AssociationSet>
           <AssociationSet Name="SousOeuvre" Association="PatronusDBModel.SousOeuvre">
             <End Role="Oeuvre" EntitySet="Oeuvres" />
             <End Role="Oeuvre1" EntitySet="Oeuvres" />
           </AssociationSet>
+          <EntitySet Name="Artistes" EntityType="PatronusDBModel.Artiste" />
+          <AssociationSet Name="fk_NoteArtiste_IdArtiste" Association="PatronusDBModel.fk_NoteArtiste_IdArtiste">
+            <End Role="Artiste" EntitySet="Artistes" />
+            <End Role="NoteArtiste" EntitySet="NoteArtistes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Participe_IdArtiste" Association="PatronusDBModel.fk_Participe_IdArtiste">
+            <End Role="Artiste" EntitySet="Artistes" />
+            <End Role="Participe" EntitySet="Participes" />
+          </AssociationSet>
+          <AssociationSet Name="Favori" Association="PatronusDBModel.Favori">
+            <End Role="Artiste" EntitySet="Artistes" />
+            <End Role="Oeuvre" EntitySet="Oeuvres" />
+          </AssociationSet>
+          <AssociationSet Name="Realise" Association="PatronusDBModel.Realise">
+            <End Role="Artiste" EntitySet="Artistes" />
+            <End Role="Oeuvre" EntitySet="Oeuvres" />
+          </AssociationSet>
           </EntityContainer>
-        <EntityType Name="Artiste">
-          <Key>
-            <PropertyRef Name="IdArtiste" />
-          </Key>
-          <Property Name="IdArtiste" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
-          <Property Name="Nom" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Prenom" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="DateNaissance" Type="DateTime" Precision="0" />
-          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Notes" Relationship="PatronusDBModel.fk_NoteArtiste_IdArtiste" FromRole="Artiste" ToRole="NoteArtiste" />
-          <NavigationProperty Name="Participes" Relationship="PatronusDBModel.fk_Participe_IdArtiste" FromRole="Artiste" ToRole="Participe" />
-          <NavigationProperty Name="OeuvresFavorites" Relationship="PatronusDBModel.Favori" FromRole="Artiste" ToRole="Oeuvre" />
-          <NavigationProperty Name="OeuvreRealisees" Relationship="PatronusDBModel.Realise" FromRole="Artiste" ToRole="Oeuvre" />
-          </EntityType>
         <EntityType Name="AspNetRole">
           <Key>
             <PropertyRef Name="Id" />
@@ -799,8 +785,8 @@
           <Property Name="IdArtiste" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Note" Type="Double" Nullable="false" />
           <Property Name="Commentaire" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Artiste" Relationship="PatronusDBModel.fk_NoteArtiste_IdArtiste" FromRole="NoteArtiste" ToRole="Artiste" />
           <NavigationProperty Name="AspNetUser" Relationship="PatronusDBModel.fk_NoteArtiste_IdUser" FromRole="NoteArtiste" ToRole="AspNetUser" />
+          <NavigationProperty Name="Artiste" Relationship="PatronusDBModel.fk_NoteArtiste_IdArtiste" FromRole="NoteArtiste" ToRole="Artiste" />
         </EntityType>
         <EntityType Name="NoteOeuvre">
           <Key>
@@ -831,18 +817,6 @@
           <Property Name="Label" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Oeuvres" Relationship="PatronusDBModel.OeuvreTheme" FromRole="Theme" ToRole="Oeuvre" />
         </EntityType>
-        <Association Name="fk_NoteArtiste_IdArtiste">
-          <End Type="PatronusDBModel.Artiste" Role="Artiste" Multiplicity="1" />
-          <End Type="PatronusDBModel.NoteArtiste" Role="NoteArtiste" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Artiste">
-              <PropertyRef Name="IdArtiste" />
-            </Principal>
-            <Dependent Role="NoteArtiste">
-              <PropertyRef Name="IdArtiste" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="PatronusDBModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -928,24 +902,12 @@
             <PropertyRef Name="IdArtiste" />
             <PropertyRef Name="IdOeuvre" />
           </Key>
-          <Property Name="IdArtiste" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
+          <Property Name="IdArtiste" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="IdOeuvre" Type="Int64" Nullable="false" />
           <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Artiste" Relationship="PatronusDBModel.fk_Participe_IdArtiste" FromRole="Participe" ToRole="Artiste" />
           <NavigationProperty Name="Oeuvre" Relationship="PatronusDBModel.fk_Participe_IdOeuvre" FromRole="Participe" ToRole="Oeuvre" />
+          <NavigationProperty Name="Artiste" Relationship="PatronusDBModel.fk_Participe_IdArtiste" FromRole="Participe" ToRole="Artiste" />
         </EntityType>
-        <Association Name="fk_Participe_IdArtiste">
-          <End Type="PatronusDBModel.Artiste" Role="Artiste" Multiplicity="1" />
-          <End Type="PatronusDBModel.Participe" Role="Participe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Artiste">
-              <PropertyRef Name="IdArtiste" />
-            </Principal>
-            <Dependent Role="Participe">
-              <PropertyRef Name="IdArtiste" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Oeuvre">
           <Key>
             <PropertyRef Name="IdOeuvre" />
@@ -962,13 +924,13 @@
           <NavigationProperty Name="NoteOeuvres" Relationship="PatronusDBModel.fk_NoteOeuvre_IdOeuvre" FromRole="Oeuvre" ToRole="NoteOeuvre" />
           <NavigationProperty Name="TypeOeuvre" Relationship="PatronusDBModel.fk_Oeuvre_IdTypeOeuvre" FromRole="Oeuvre" ToRole="TypeOeuvre" />
           <NavigationProperty Name="Participes" Relationship="PatronusDBModel.fk_Participe_IdOeuvre" FromRole="Oeuvre" ToRole="Participe" />
-          <NavigationProperty Name="InFavoriteListOf" Relationship="PatronusDBModel.Favori" FromRole="Oeuvre" ToRole="Artiste" />
           <NavigationProperty Name="Organismes" Relationship="PatronusDBModel.OeuvreOrganisme" FromRole="Oeuvre" ToRole="Organisme" />
           <NavigationProperty Name="Themes" Relationship="PatronusDBModel.OeuvreTheme" FromRole="Oeuvre" ToRole="Theme" />
-          <NavigationProperty Name="Artistes1" Relationship="PatronusDBModel.Realise" FromRole="Oeuvre" ToRole="Artiste" />
           <NavigationProperty Name="Parents" Relationship="PatronusDBModel.SousOeuvre" FromRole="Oeuvre" ToRole="Oeuvre1" />
           <NavigationProperty Name="Enfants" Relationship="PatronusDBModel.SousOeuvre" FromRole="Oeuvre1" ToRole="Oeuvre" />
           <Property Name="UrlImage" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="InFavoriteListOf" Relationship="PatronusDBModel.Favori" FromRole="Oeuvre" ToRole="Artiste" />
+          <NavigationProperty Name="Artistes1" Relationship="PatronusDBModel.Realise" FromRole="Oeuvre" ToRole="Artiste" />
         </EntityType>
         <Association Name="fk_Oeuvre_IdContributeur">
           <End Type="PatronusDBModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -1018,10 +980,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Favori">
-          <End Type="PatronusDBModel.Artiste" Role="Artiste" Multiplicity="*" />
-          <End Type="PatronusDBModel.Oeuvre" Role="Oeuvre" Multiplicity="*" />
-        </Association>
         <Association Name="OeuvreOrganisme">
           <End Type="PatronusDBModel.Oeuvre" Role="Oeuvre" Multiplicity="*" />
           <End Type="PatronusDBModel.Organisme" Role="Organisme" Multiplicity="*" />
@@ -1030,13 +988,55 @@
           <End Type="PatronusDBModel.Oeuvre" Role="Oeuvre" Multiplicity="*" />
           <End Type="PatronusDBModel.Theme" Role="Theme" Multiplicity="*" />
         </Association>
-        <Association Name="Realise">
-          <End Type="PatronusDBModel.Artiste" Role="Artiste" Multiplicity="*" />
-          <End Type="PatronusDBModel.Oeuvre" Role="Oeuvre" Multiplicity="*" />
-        </Association>
         <Association Name="SousOeuvre">
           <End Type="PatronusDBModel.Oeuvre" Role="Oeuvre" Multiplicity="*" />
           <End Type="PatronusDBModel.Oeuvre" Role="Oeuvre1" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Artiste">
+          <Key>
+            <PropertyRef Name="IdArtiste" />
+          </Key>
+          <Property Name="IdArtiste" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Nom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Prenom" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DateNaissance" Type="DateTime" Precision="0" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Notes" Relationship="PatronusDBModel.fk_NoteArtiste_IdArtiste" FromRole="Artiste" ToRole="NoteArtiste" />
+          <NavigationProperty Name="Participes" Relationship="PatronusDBModel.fk_Participe_IdArtiste" FromRole="Artiste" ToRole="Participe" />
+          <NavigationProperty Name="OeuvresFavorites" Relationship="PatronusDBModel.Favori" FromRole="Artiste" ToRole="Oeuvre" />
+          <NavigationProperty Name="OeuvresRealisees" Relationship="PatronusDBModel.Realise" FromRole="Artiste" ToRole="Oeuvre" />
+        </EntityType>
+        <Association Name="fk_NoteArtiste_IdArtiste">
+          <End Type="PatronusDBModel.Artiste" Role="Artiste" Multiplicity="1" />
+          <End Type="PatronusDBModel.NoteArtiste" Role="NoteArtiste" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artiste">
+              <PropertyRef Name="IdArtiste" />
+            </Principal>
+            <Dependent Role="NoteArtiste">
+              <PropertyRef Name="IdArtiste" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Participe_IdArtiste">
+          <End Type="PatronusDBModel.Artiste" Role="Artiste" Multiplicity="1" />
+          <End Type="PatronusDBModel.Participe" Role="Participe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artiste">
+              <PropertyRef Name="IdArtiste" />
+            </Principal>
+            <Dependent Role="Participe">
+              <PropertyRef Name="IdArtiste" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Favori">
+          <End Type="PatronusDBModel.Artiste" Role="Artiste" Multiplicity="*" />
+          <End Type="PatronusDBModel.Oeuvre" Role="Oeuvre" Multiplicity="*" />
+        </Association>
+        <Association Name="Realise">
+          <End Type="PatronusDBModel.Artiste" Role="Artiste" Multiplicity="*" />
+          <End Type="PatronusDBModel.Oeuvre" Role="Oeuvre" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -1044,17 +1044,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="PatronusDBModelStoreContainer" CdmEntityContainer="PatronusDBEntities">
-          <EntitySetMapping Name="Artistes">
-            <EntityTypeMapping TypeName="PatronusDBModel.Artiste">
-              <MappingFragment StoreEntitySet="Artiste">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
-                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
-                <ScalarProperty Name="Nom" ColumnName="Nom" />
-                <ScalarProperty Name="IdArtiste" ColumnName="IdArtiste" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
             <EntityTypeMapping TypeName="PatronusDBModel.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
@@ -1196,14 +1185,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="Favori" TypeName="PatronusDBModel.Favori" StoreEntitySet="Favori">
-            <EndProperty Name="Oeuvre">
-              <ScalarProperty Name="IdOeuvre" ColumnName="IdOeuvre" />
-            </EndProperty>
-            <EndProperty Name="Artiste">
-              <ScalarProperty Name="IdArtiste" ColumnName="IdArtiste" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="OeuvreOrganisme" TypeName="PatronusDBModel.OeuvreOrganisme" StoreEntitySet="OeuvreOrganisme">
             <EndProperty Name="Organisme">
               <ScalarProperty Name="IdOrganisme" ColumnName="IdOrganisme" />
@@ -1220,7 +1201,26 @@
               <ScalarProperty Name="IdOeuvre" ColumnName="IdOeuvre" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="Realise" TypeName="PatronusDBModel.Realise" StoreEntitySet="Realise">
+          <AssociationSetMapping Name="SousOeuvre" TypeName="PatronusDBModel.SousOeuvre" StoreEntitySet="SousOeuvre">
+            <EndProperty Name="Oeuvre1">
+              <ScalarProperty Name="IdOeuvre" ColumnName="IdParent" />
+            </EndProperty>
+            <EndProperty Name="Oeuvre">
+              <ScalarProperty Name="IdOeuvre" ColumnName="IdEnfant" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Artistes">
+            <EntityTypeMapping TypeName="PatronusDBModel.Artiste">
+              <MappingFragment StoreEntitySet="Artiste">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="IdArtiste" ColumnName="IdArtiste" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Favori" TypeName="PatronusDBModel.Favori" StoreEntitySet="Favori">
             <EndProperty Name="Oeuvre">
               <ScalarProperty Name="IdOeuvre" ColumnName="IdOeuvre" />
             </EndProperty>
@@ -1228,12 +1228,12 @@
               <ScalarProperty Name="IdArtiste" ColumnName="IdArtiste" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="SousOeuvre" TypeName="PatronusDBModel.SousOeuvre" StoreEntitySet="SousOeuvre">
-            <EndProperty Name="Oeuvre1">
-              <ScalarProperty Name="IdOeuvre" ColumnName="IdParent" />
-            </EndProperty>
+          <AssociationSetMapping Name="Realise" TypeName="PatronusDBModel.Realise" StoreEntitySet="Realise">
             <EndProperty Name="Oeuvre">
-              <ScalarProperty Name="IdOeuvre" ColumnName="IdEnfant" />
+              <ScalarProperty Name="IdOeuvre" ColumnName="IdOeuvre" />
+            </EndProperty>
+            <EndProperty Name="Artiste">
+              <ScalarProperty Name="IdArtiste" ColumnName="IdArtiste" />
             </EndProperty>
           </AssociationSetMapping>
           </EntityContainerMapping>
