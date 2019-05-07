@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -36,6 +38,36 @@ namespace Patronus.Controllers
                 return HttpNotFound();
             }
             return View(oeuvre);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Details(long IdOeuvre, string Commentaire, string Note)
+        {
+            Oeuvre oeuvre = db.Oeuvres.Find(IdOeuvre);
+
+            if (ModelState.IsValid)
+            {
+                NoteOeuvre noteOeuvre = new NoteOeuvre();
+                noteOeuvre.IdUser = User.Identity.GetUserId();
+                noteOeuvre.IdOeuvre = oeuvre.IdOeuvre;
+                noteOeuvre.Note = Double.Parse(Note);
+                noteOeuvre.Commentaire = Commentaire;
+                db.NoteOeuvres.Add(noteOeuvre);
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch(DbUpdateException e)
+                {
+                    ViewBag.Message = "L'utilisateur a déjà noté l'oeuvre !";
+                    db.NoteOeuvres.Remove(noteOeuvre);
+                    return View(oeuvre);
+                }  
+                
+            }
+            return RedirectToAction("Details","Oeuvres", routeValues:new { id = IdOeuvre });
         }
 
         // GET: Oeuvres/Create
