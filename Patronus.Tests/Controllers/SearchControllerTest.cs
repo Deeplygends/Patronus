@@ -16,14 +16,14 @@ namespace Patronus.Tests.Controllers
         {
             SearchController controller = new SearchController();
 
-            /*ViewResult result = controller.SearchPattern(new SearchViewModel(){SearchChain = "Tarzan"}) as ViewResult;
+            ViewResult result = controller.SearchPattern(new SearchViewModel(){ SearchChainOeuvres = "Tarzan"}) as ViewResult;
             Assert.IsNotNull(result);
       
             SearchViewModel model = result.Model as SearchViewModel;
             Assert.IsNotNull(model);
             Assert.AreEqual(model.Oeuvres.First().Label, "Tarzan");
 
-            Assert.AreEqual(model.Oeuvres.First().TypeOeuvre.LabelType, "Cinema");*/
+            Assert.AreEqual(model.Oeuvres.First().TypeOeuvre.LabelType, "Cinema");
 
         }
 
@@ -32,12 +32,12 @@ namespace Patronus.Tests.Controllers
         {
             SearchController controller = new SearchController();
 
-            //ViewResult result = controller.SearchPattern(new SearchViewModel(){SearchChain = "Tarz"}) as ViewResult;
-            //Assert.IsNotNull(result);
+            ViewResult result = controller.SearchPattern(new SearchViewModel(){SearchChainOeuvres = "Tarz"}) as ViewResult;
+            Assert.IsNotNull(result);
 
-            //SearchViewModel model = result.Model as SearchViewModel;
-            //Assert.IsNotNull(model);
-            //Assert.AreEqual(model.Oeuvres.Any(),true);
+            SearchViewModel model = result.Model as SearchViewModel;
+            Assert.IsNotNull(model);
+            Assert.AreEqual(model.Oeuvres.Any(),true);
             
 
         }
