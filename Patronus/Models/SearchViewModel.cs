@@ -11,5 +11,7 @@ namespace Patronus.Models
 
         public string SearchChainArtistes { get; set; }
         public List<Oeuvre> Oeuvres { get; set; }
+
+        public List<Artiste> Artistes { get; set; }
     }
 }

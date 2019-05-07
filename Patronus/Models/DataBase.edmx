@@ -118,7 +118,7 @@
           </Key>
           <Property Name="IdOeuvre" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdTypeOeuvre" Type="bigint" Nullable="false" />
-          <Property Name="Label" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Label" Type="varchar" MaxLength="500" />
           <Property Name="Description" Type="varchar" MaxLength="1000" />
           <Property Name="DateCreation" Type="date" />
           <Property Name="DateAjout" Type="date" />
@@ -914,7 +914,7 @@
           </Key>
           <Property Name="IdOeuvre" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdTypeOeuvre" Type="Int64" Nullable="false" />
-          <Property Name="Label" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Label" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="DateCreation" Type="DateTime" Precision="0" />
           <Property Name="DateAjout" Type="DateTime" Precision="0" />

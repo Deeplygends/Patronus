@@ -8,9 +8,16 @@
 @using (Html.BeginForm("SearchPattern", "Search", FormMethod.Post))
 {
     @Html.TextBoxFor(model => model.SearchChainOeuvres)
+    <select name="filter">
+        <option value="all">Tous</option>
+        <option value="movie">Cinéma</option>
+        <option value="music">Musique</option>
+        <option value="artist">Artiste</option>
+    </select>
     <input type="submit" value="Search" />
 }
 
+<h2>Oeuvres</h2>
 <table class="table">
     <thead>
         <tr>
@@ -34,6 +41,29 @@
         </tr>
 
 
-        }
+    }
+</table>
+
+<h2>Artistes</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Decription</th>
+        </tr>
+    </thead>
+    @foreach (var oeuvre in Model.Artistes)
+    {
+        <tr>
+            <td>
+                @oeuvre.FullName
+            </td>
+            <td>
+                @oeuvre.Description
+            </td>
+        </tr>
+
+
+    }
 </table>
 
