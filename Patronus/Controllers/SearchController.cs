@@ -23,7 +23,7 @@ namespace Patronus.Controllers
             //model.Oeuvres = db.Oeuvres.Where(x => x.Label.Contains(model.SearchChainOeuvres)).ToList();
 
             model.Oeuvres = db.Oeuvres.Where(x => x.Label.Contains(model.SearchChainOeuvres)).ToList();
-
+            var data = DeezerController.GetDeezerResult(model.SearchChainOeuvres);
             var artisteList = db.Artistes
                 .Where(x => x.Nom.ToUpper().Contains(model.SearchChainOeuvres.ToUpper()) || x.Prenom.ToUpper().Contains(model.SearchChainOeuvres.ToUpper()))
                 .Select(x => x.IdArtiste)
@@ -38,7 +38,6 @@ namespace Patronus.Controllers
                     .Contains(y.IdOeuvre)).ToList();
 
             model.Oeuvres.AddRange(oeuvresByArtist);
-
             return View(model);
         }
 

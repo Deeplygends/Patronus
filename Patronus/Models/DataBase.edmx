@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="IdArtiste" />
           </Key>
-          <Property Name="IdArtiste" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="IdArtiste" Type="nvarchar" MaxLength="128" Nullable="false" StoreGeneratedPattern="None" />
           <Property Name="Nom" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Prenom" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="DateNaissance" Type="date" />
@@ -714,7 +714,7 @@
           <Key>
             <PropertyRef Name="IdArtiste" />
           </Key>
-          <Property Name="IdArtiste" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IdArtiste" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
           <Property Name="Nom" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Prenom" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="DateNaissance" Type="DateTime" Precision="0" />
@@ -928,7 +928,7 @@
             <PropertyRef Name="IdArtiste" />
             <PropertyRef Name="IdOeuvre" />
           </Key>
-          <Property Name="IdArtiste" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IdArtiste" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
           <Property Name="IdOeuvre" Type="Int64" Nullable="false" />
           <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Artiste" Relationship="PatronusDBModel.fk_Participe_IdArtiste" FromRole="Participe" ToRole="Artiste" />

@@ -138,7 +138,6 @@ C:\Users\Micky\Documents\Patronus\Patronus.Tests\obj\Debug\Patronus.Tests.csproj
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\obj\Debug\Patronus.Tests.csproj.CopyComplete
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\obj\Debug\Patronus.Tests.dll
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\obj\Debug\Patronus.Tests.pdb
-C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\Newtonsoft.Json.pdb
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\fr\Microsoft.Owin.resources.dll
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\fr\Microsoft.Owin.Security.resources.dll
 C:\Users\Micky\Documents\Patronus\Patronus.Tests\bin\Debug\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
