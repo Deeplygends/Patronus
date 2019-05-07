@@ -3,96 +3,100 @@
 @{
     ViewBag.Title = "Details";
 }
+@using (Html.BeginForm("Details","Oeuvres",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <center><h2 style="color:red;">@ViewBag.Message</h2></center>
+    <h1 style="text-align:center;font-weight:bold">@Html.DisplayFor(model => model.Label)</h1>
+    <hr />
+    @Html.HiddenFor(model => model.IdOeuvre)
+    <center><img src=@Html.DisplayFor(model => model.UrlImage) width="200"></center>
+    <br />
 
-<h1 style="text-align:center;font-weight:bold">@Html.DisplayFor(model => model.Label)</h1>
-<hr />
-
-<center><img src=@Html.DisplayFor(model => model.UrlImage) width="200"></center>
-<br />
-
-<table style="margin-left:auto;margin-right:auto">
-    <tr>
-        <td style="text-align:center">
-            @Html.DisplayFor(model => model.TypeOeuvre.LabelType)
-        </td>
-    </tr>
-    <tr>
-        <td style="text-align:center">
-            @Html.DisplayFor(model => model.DateCreation.Value.Year)
-        </td>
-    </tr>
-    <tr>
-        <td style="font-weight:bold;text-align:center">
-            @foreach (var theme in Model.Themes)
-            {
-
-                @Html.DisplayFor(x => theme.Label)
-                <text>&nbsp;</text>
-
-            }
-        </td>
-    </tr>
-    @foreach (var artiste in Model.Participes)
-    {
-        <tr>
-            <td style="font-weight:bold;text-align:center">
-                @artiste.Artiste.Prenom @artiste.Artiste.Nom
-            </td>
-        </tr>
-    }
-    <tr>
-        <td style="text-align:center">
-            --
-        </td>
-    </tr>
-    <tr>
-        <td style="font-weight:bold;text-align:center">
-            @Html.DisplayFor(model => model.Description)
-        </td>
-    </tr>
-
-</table>
-<br />
-
-<table style="margin-left:auto;margin-right:auto">
-
-    <tr>
-        <td>
-            Ajouté par @Html.DisplayFor(model => model.AspNetUser.UserName) le @Html.DisplayFor(model => model.DateAjout.Value.Day)/@Html.DisplayFor(model => model.DateAjout.Value.Month)/@Html.DisplayFor(model => model.DateAjout.Value.Year)
-        </td>
-    </tr>
-
-
-</table>
-
-
-<center><img id="etoile1" onclick="starClick(this);" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" /><img id="etoile2" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" onclick="starClick(this);" width="50" /><img id="etoile3" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" onclick="starClick(this);"/><img id="etoile4" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" onclick="starClick(this);"/><img id="etoile5" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" onclick="starClick(this);"/></center>
-<br />
-<br />
-<br />
-
-<h3 style="font-weight:bold;text-align:center">COMMENTAIRES</h3>
-<br/>
-
-<table style="margin-left:auto;margin-right:auto">
-    @foreach (var comm in Model.NoteOeuvres)
-    {
+    <table style="margin-left:auto;margin-right:auto">
         <tr>
             <td style="text-align:center">
-                @comm.Commentaire -- <i>@comm.AspNetUser.UserName</i>
+                @Html.DisplayFor(model => model.TypeOeuvre.LabelType)
             </td>
         </tr>
-    }
-    <tr>
-        <td>
-            <input id="commentaires" type="text" style="text-align:center;margin:auto" />
-        </td>
-    </tr>
-</table>
+        <tr>
+            <td style="text-align:center">
+                @Html.DisplayFor(model => model.DateCreation.Value.Year)
+            </td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;text-align:center">
+                @foreach (var theme in Model.Themes)
+                {
 
-<center><button type="submit" style="text-align:center;margin:auto">Commenter</button></center>
+                    @Html.DisplayFor(x => theme.Label)
+                    <text>&nbsp;</text>
+
+                }
+            </td>
+        </tr>
+        @foreach (var artiste in Model.Participes)
+        {
+            <tr>
+                <td style="font-weight:bold;text-align:center">
+                    @artiste.Artiste.Prenom @artiste.Artiste.Nom
+                </td>
+            </tr>
+        }
+        <tr>
+            <td style="text-align:center">
+                --
+            </td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;text-align:center">
+                @Html.DisplayFor(model => model.Description)
+            </td>
+        </tr>
+
+    </table>
+    <br />
+
+    <table style="margin-left:auto;margin-right:auto">
+
+        <tr>
+            <td>
+                Ajouté par @Html.DisplayFor(model => model.AspNetUser.UserName) le @Html.DisplayFor(model => model.DateAjout.Value.Day)/@Html.DisplayFor(model => model.DateAjout.Value.Month)/@Html.DisplayFor(model => model.DateAjout.Value.Year)
+            </td>
+        </tr>
 
 
+    </table>
+
+
+    @Html.Hidden("Note")
+    <center><img id="etoile1" onclick="starClick(this);" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" /><img id="etoile2" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" onclick="starClick(this);" width="50" /><img id="etoile3" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" onclick="starClick(this);" /><img id="etoile4" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" onclick="starClick(this);" /><img id="etoile5" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" onclick="starClick(this);" /></center>
+    <br />
+    <br />
+    <br />
+
+    <h3 style="font-weight:bold;text-align:center">COMMENTAIRES</h3>
+    <br />
+
+    <table style="margin-left:auto;margin-right:auto">
+        @foreach (var comm in Model.NoteOeuvres)
+        {
+            <tr>
+                <td style="text-align:center">
+                    @comm.Commentaire -- <i>@comm.AspNetUser.UserName</i>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+                @Html.TextBox("Commentaire")
+            </td>
+        </tr>
+    </table>
+
+    <center><button type="submit" style="text-align:center;margin:auto">Commenter</button></center>
+
+}
 
 
 
@@ -107,7 +111,7 @@
         var nbEtoile = parseInt(element.id.substring(6, 7)) + 1;
         console.log(nbEtoile);
         for (i = 1; i < nbEtoile; i++) {
-            $("#etoile" + i).attr('src','https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/e/t/etoile-10cm-etoile-10cm-3760045909450_0.jpg')
+            $("#etoile" + i).attr('src', 'https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/e/t/etoile-10cm-etoile-10cm-3760045909450_0.jpg')
             $("#etoile" + i).attr('width', 55);
 
         }
@@ -115,7 +119,10 @@
             $("#etoile" + i).attr('src', 'https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg')
             $("#etoile" + i).attr('width', 50);
         }
+        $("#Note").val(nbEtoile-1);
     }
+
+
 
 </script>
 
