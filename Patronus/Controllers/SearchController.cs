@@ -36,9 +36,10 @@ namespace Patronus.Controllers
                 List<Oeuvre> mo = new OMDbController().GetAllMovies(model.SearchChainOeuvres);
             }
 
-            if(filter == "music" || filter == "all")
+            if(filter == "music" || filter == "all" || filter=="artist")
             {
                 //api deezer
+                DeezerController.GetDeezerResult(model.SearchChainOeuvres);
             }
             //requete de toutes les oeuvres
             if (filter != "artist")
