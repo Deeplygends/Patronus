@@ -252,7 +252,8 @@ namespace Patronus.Controllers
                     Description = JSONObj["Plot"],
                     IdAPI = JSONObj["imdbID"],
                     UrlImage = JSONObj["Poster"],
-                    IdContributeur = "IDapiOMDb"
+                    IdContributeur = "IDapiOMDb",
+                    DateAjout = DateTime.Now
                 };
                 if(JSONObj["Released"] != "N/A")
                 {

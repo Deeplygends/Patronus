@@ -16,54 +16,64 @@
     </select>
     <input type="submit" value="Search" />
 }
-
-<h2>Oeuvres</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Titre</th>
-            <th>Date de création</th>
-            <th>Type</th>
-        </tr>
-    </thead>
-    @foreach (var oeuvre in Model.Oeuvres)
-    {
-        <tr>
-            <td>
-                @oeuvre.Label
-            </td>
-            <td>
-                @oeuvre.DateCreation
-            </td>
-            <td>
-                @oeuvre.TypeOeuvre.LabelType
-            </td>
-        </tr>
-
-
-    }
-</table>
-
-<h2>Artistes</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Nom</th>
-            <th>Decription</th>
-        </tr>
-    </thead>
-    @foreach (var oeuvre in Model.Artistes)
-    {
-        <tr>
-            <td>
-                @oeuvre.FullName
-            </td>
-            <td>
-                @oeuvre.Description
-            </td>
-        </tr>
+@if (Model.Oeuvres.Count > 0)
+{
+    <h2>Oeuvres</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Date de création</th>
+                <th>Type</th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var oeuvre in Model.Oeuvres)
+        {
+            <tr>
+                <td>
+                    @oeuvre.Label
+                </td>
+                <td>
+                    @oeuvre.DateCreation
+                </td>
+                <td>
+                    @oeuvre.TypeOeuvre.LabelType
+                </td>
+                <td>
+                    @Html.ActionLink("Détails", "Details", "Oeuvres", new { id = oeuvre.IdOeuvre }, null)
+                </td>
+            </tr>
 
 
-    }
-</table>
+        }
+    </table>
+}
+
+@if (Model.Artistes.Count > 0)
+{
+    <h2>Artistes</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Decription</th>
+            </tr>
+        </thead>
+        @foreach (var oeuvre in Model.Artistes)
+        {
+            <tr>
+                <td>
+                    @oeuvre.FullName
+                </td>
+                <td>
+                    @oeuvre.Description
+                </td>
+            </tr>
+
+
+        }
+    </table>
+
+}
 
