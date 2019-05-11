@@ -1,16 +1,17 @@
 ﻿@model IEnumerable<Patronus.Models.Oeuvre>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Liste des oeuvres";
 }
 
-<h2>Index</h2>
+<h2>Liste des oeuvres</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Ajouter une oeuvre", "Create")
 </p>
 <table class="table">
     <tr>
+        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.Label)
         </th>
@@ -18,58 +19,43 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateCreation)
+            Date de création
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateAjout)
+            Date d'ajout
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdAPI)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UrlImage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TypeOeuvre.LabelType)
+            Type
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Label)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateAjout)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdAPI)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UrlImage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TypeOeuvre.LabelType)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdOeuvre }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdOeuvre }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdOeuvre })
-        </td>
-    </tr>
+<tr>
+    <td>
+        <img src=@item.UrlImage class="list-img" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Label)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateCreation)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateAjout)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TypeOeuvre.LabelType)
+    </td>
+    <td>
+        @Html.ActionLink("Modifier", "Edit", new { id = item.IdOeuvre }, new { @class = "btn" }) |
+        @Html.ActionLink("Détails", "Details", new { id = item.IdOeuvre }, new { @class = "btn" }) |
+        @Html.ActionLink("Supprimer", "Delete", new { id = item.IdOeuvre }, new { @class = "btn" })
+    </td>
+</tr>
 }
 
 </table>

@@ -1,20 +1,31 @@
 ﻿@model Patronus.Models.SearchViewModel
 @{
-    ViewBag.Title = "Search";
+    ViewBag.Title = "Recherche";
 }
-
-<h2>Search</h2>
 
 @using (Html.BeginForm("SearchPattern", "Search", FormMethod.Post))
 {
-    @Html.TextBoxFor(model => model.SearchChainOeuvres)
-    <select name="filter">
-        <option value="all">Tous</option>
-        <option value="movie">Cinéma</option>
-        <option value="music">Musique</option>
-        <option value="artist">Artiste</option>
-    </select>
-    <input type="submit" value="Search" />
+    <div class="search-form">
+        <div class="row">
+            <div class="col-sm-2 search-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="col-sm-8 search-text">
+                @Html.TextBoxFor(model => model.SearchChainOeuvres, new { @class = "form-control" })
+            </div>
+            <div class="col-sm-2 search-type form-group">
+                <select name="filter" class="form-control">
+                    <option value="all">Tous</option>
+                    <option value="movie">Cinéma</option>
+                    <option value="music">Musique</option>
+                    <option value="artist">Artiste</option>
+                </select>
+            </div>
+        </div>
+        <div class="search-button">
+            <input type="submit" value="Rechercher" class="btn-primary btn" />
+        </div>
+    </div>
 }
 @if (Model.Oeuvres.Count > 0)
 {
@@ -22,6 +33,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th></th>
                 <th>Titre</th>
                 <th>Date de création</th>
                 <th>Type</th>
@@ -31,6 +43,9 @@
         @foreach (var oeuvre in Model.Oeuvres)
         {
             <tr>
+                <td>
+                    <img src=@oeuvre.UrlImage class="list-img" />
+                </td>
                 <td>
                     @oeuvre.Label
                 </td>
