@@ -13,7 +13,7 @@ namespace Patronus.Controllers
         [HttpGet]
         public string Music(string title)
         {
-            return new DeezerController().GetDeezerResult(title);
+            return DeezerController.GetDeezerResult(title).ToString();
 
         }
 

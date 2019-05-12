@@ -105,6 +105,7 @@ C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\Patron
 C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\Patronus.dll.config
 C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\Newtonsoft.Json.pdb
 C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\System.Web.Helpers.xml
 C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\System.Web.Mvc.xml
@@ -129,10 +130,13 @@ C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\fr\Sys
 C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\fr\System.Web.WebPages.resources.dll
 C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\fr\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\fr\System.Web.WebPages.Razor.resources.dll
+C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\fr\Microsoft.Owin.resources.dll
 C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\fr\System.Web.Optimization.resources.dll
 C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\fr\Microsoft.AspNet.Identity.Core.resources.dll
 C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\fr\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\fr\Microsoft.Owin.Security.resources.dll
 C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\fr\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\bin\Debug\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
 C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\obj\Debug\Patronus.Tests.csprojAssemblyReference.cache
 C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\obj\Debug\Patronus.Tests.csproj.CoreCompileInputs.cache
 C:\Users\Adèle\Documents\M1 MIAGE\SIA2\Patronus\Patronus.Tests\obj\Debug\Patronus.Tests.csproj.CopyComplete

@@ -148,6 +148,88 @@ namespace Patronus.Controllers
             return jsonString;
         }
 
+
+        public List<Oeuvre> GetAllMovies(string title)
+        {
+            string movie = GetOMDbResult(title, "movie", null, "short", "json", null, null, true);
+            string ep = GetOMDbResult(title, "episode", null, "short", "json", null, null, true);
+            string ser = GetOMDbResult(title, "series", null, "short", "json", null, null, true);
+
+            List<long> idmovie = new List<long>();
+            List<long> idep = new List<long>();
+            List<long> idser = new List<long>();
+
+            var jsonObj = new JavaScriptSerializer().Deserialize<Dictionary<string, Object>>(movie);
+            if (jsonObj.Count == 2)
+            {
+                //error
+            }
+            else
+            {
+                ArrayList list = (ArrayList)jsonObj["Search"];
+                foreach (var obj in list)
+                {
+                    var di = (Dictionary<string, Object>)obj;
+                    string id = (string)di["imdbID"];
+                    string mo = new OMDbController().GetOMDbResultByID(id, "movie", null, "short", "json", null, null);
+                    idmovie.Add(ParseOeuvreSingle(mo, "movie").IdOeuvre);
+                }
+            }
+
+            var jsonObj1 = new JavaScriptSerializer().Deserialize<Dictionary<string, Object>>(ep);
+            if (jsonObj1.Count == 2)
+            {
+                //error
+            }
+            else
+            {
+                ArrayList list = (ArrayList)jsonObj1["Search"];
+                foreach (var obj in list)
+                {
+                    var di = (Dictionary<string, Object>)obj;
+                    string id = (string)di["imdbID"];
+                    string mo = new OMDbController().GetOMDbResultByID(id, "episode", null, "short", "json", null, null);
+                    idep.Add(ParseOeuvreSingle(mo, "episode").IdOeuvre);
+                }
+            }
+
+            var jsonObj2 = new JavaScriptSerializer().Deserialize<Dictionary<string, Object>>(ser);
+            if (jsonObj2.Count == 2)
+            {
+                //error
+            }
+            else
+            {
+                ArrayList list = (ArrayList)jsonObj2["Search"];
+                foreach (var obj in list)
+                {
+                    var di = (Dictionary<string, Object>)obj;
+                    string id = (string)di["imdbID"];
+                    string mo = new OMDbController().GetOMDbResultByID(id, "series", null, "short", "json", null, null);
+                    idser.Add(ParseOeuvreSingle(mo, "series").IdOeuvre);
+                }
+            }
+
+            List<Oeuvre> o = new List<Oeuvre>();
+            //parse list and search in bdd
+            foreach (long id in idmovie)
+            {
+                Oeuvre oe = db.Oeuvres.FirstOrDefault(m => m.IdOeuvre == id);
+                o.Add(oe);
+            }
+            foreach (long id in idep)
+            {
+                Oeuvre oe = db.Oeuvres.FirstOrDefault(m => m.IdOeuvre == id);
+                o.Add(oe);
+            }
+            foreach (long id in idser)
+            {
+                Oeuvre oe = db.Oeuvres.FirstOrDefault(m => m.IdOeuvre == id);
+                o.Add(oe);
+            }
+
+            return o;
+        }
         /// <summary>
         /// Parses the json object for the Movie (json object obtained after a single request) to an Oeuvre object.
         /// </summary>
@@ -168,11 +250,16 @@ namespace Patronus.Controllers
                     IdTypeOeuvre = TypeOeuvreController.GetTypeOeuvreId(type),
                     Label = JSONObj["Title"],
                     Description = JSONObj["Plot"],
-                    DateCreation = DateTime.ParseExact(JSONObj["Released"], "dd MMM yyyy", CultureInfo.InvariantCulture),
                     IdAPI = JSONObj["imdbID"],
                     UrlImage = JSONObj["Poster"],
-                    IdContributeur = "IDapiOMDb"
+                    IdContributeur = "IDapiOMDb",
+                    DateAjout = DateTime.Now
                 };
+                if(JSONObj["Released"] != "N/A")
+                {
+                    movie.DateCreation = DateTime.ParseExact(JSONObj["Released"], "dd MMM yyyy", CultureInfo.InvariantCulture);
+                }
+                    
                 if (ModelState.IsValid)
                 {
                     db.Oeuvres.Add(movie);
@@ -302,5 +389,3 @@ namespace Patronus.Controllers
     }
 }
 
-
-//participes pb
