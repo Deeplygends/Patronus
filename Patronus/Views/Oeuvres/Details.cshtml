@@ -3,13 +3,13 @@
 @{
     ViewBag.Title = "Détails";
 }
-@using (Html.BeginForm("Details","Oeuvres",FormMethod.Post))
+@using (Html.BeginForm("Details", "Oeuvres", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <center><h2 style="color:red;">@ViewBag.Message</h2></center>
     <h1 style="text-align:center;font-weight:bold">@Html.DisplayFor(model => model.Label)</h1>
     <hr />
-    @Html.HiddenFor(model => model.IdOeuvre)
+    @Html.HiddenFor(model => model.IdOeuvre, new { @id = "idOeuvre" })
     <center><img src=@Html.DisplayFor(model => model.UrlImage) width="200"></center>
     <br />
 
@@ -72,10 +72,18 @@
 
     </table>
 
-
     @Html.Hidden("Note")
     <center><img id="etoile1" onclick="starClick(this);" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" /><img id="etoile2" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" onclick="starClick(this);" width="50" /><img id="etoile3" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" onclick="starClick(this);" /><img id="etoile4" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" onclick="starClick(this);" /><img id="etoile5" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" onclick="starClick(this);" /></center>
     <br />
+    <table style="margin-left:auto;margin-right:auto">
+        <tr>
+            <td>
+                Note Moyenne : 
+            </td>
+            <td id="mean" style="font-weight:bold;text-align:center"></td>
+            <td>/5</td>
+        </tr>
+    </table>
     <br />
     <br />
 
@@ -87,7 +95,7 @@
         {
             <tr>
                 <td style="text-align:center">
-                    @comm.Commentaire -- <i>@comm.AspNetUser.UserName</i>
+                    @comm.Note/5 -- @comm.Commentaire -- <i>@comm.AspNetUser.UserName</i>
                 </td>
             </tr>
         }
@@ -98,7 +106,7 @@
         </tr>
     </table>
 
-    <center><button type="submit" style="text-align:center;margin:auto">Commenter</button></center>
+    <center><button type="submit" style="text-align:center;margin:auto" onclick="moy();">Commenter</button></center>
 
 }
 
@@ -108,12 +116,17 @@
     @Html.ActionLink("Liste des oeuvres", "Index")
 </p>
 
-
+@Scripts.Render("~/bundles/jquery")
 
 <script type="text/javascript">
+
+    $(document).ready(function () {
+        moy();
+    });
+    
+
     function starClick(element) {
         var nbEtoile = parseInt(element.id.substring(6, 7)) + 1;
-        console.log(nbEtoile);
         for (i = 1; i < nbEtoile; i++) {
             $("#etoile" + i).attr('src', 'https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/e/t/etoile-10cm-etoile-10cm-3760045909450_0.jpg')
             $("#etoile" + i).attr('width', 55);
@@ -123,11 +136,26 @@
             $("#etoile" + i).attr('src', 'https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg')
             $("#etoile" + i).attr('width', 50);
         }
-        $("#Note").val(nbEtoile-1);
+        $("#Note").val(nbEtoile - 1);
     }
 
+    function moy() {
+        var idOeuvre = new Number($("#idOeuvre").val()).toFixed();
+        var mean = $("#mean");
+        mean.empty();
 
+        $.ajax({
+            type: 'POST',
+            data: { idOeuvre: idOeuvre },
+            url: "/Oeuvres/GetMean",
+            dataType: 'json',
+            success: function (moyenne) {
+                mean.html(" "+moyenne);
+            }
+        });
+
+    };
 
 </script>
 
-@Scripts.Render("~/bundles/jquery")
+
