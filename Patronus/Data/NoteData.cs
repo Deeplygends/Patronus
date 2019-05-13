@@ -11,9 +11,14 @@ namespace Patronus.Data
         private PatronusDBEntities db = new PatronusDBEntities();
         public double GetMeanNote(long idOeuvre)
         {
+            var tmp = db.NoteOeuvres.Where(x => x.IdOeuvre == idOeuvre);
+            if (tmp.Count() > 0)
+            {
+                var mean = tmp.Average(x => x.Note);
+                return Math.Round(mean, 2);
+            }
 
-            return Math.Round(db.NoteOeuvres.Where(x => x.IdOeuvre == idOeuvre).Average(x => x.Note),2);
-
+            return 0;
         }
         
     }
