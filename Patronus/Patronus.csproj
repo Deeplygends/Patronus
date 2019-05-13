@@ -194,6 +194,7 @@
     <Compile Include="Controllers\MovieApiController.cs" />
     <Compile Include="Controllers\OeuvresController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\TypeOeuvreController.cs" />
     <Compile Include="Data\NoteData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -229,10 +230,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataBase.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\DeezerAlbum.cs" />
+    <Compile Include="Models\DeezerArtiste.cs" />
+    <Compile Include="Models\DeezerTrack.cs" />
     <Compile Include="Models\Groupe.cs">
       <DependentUpon>DataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\JsonDeezer.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NoteArtiste.cs">
       <DependentUpon>DataBase.tt</DependentUpon>

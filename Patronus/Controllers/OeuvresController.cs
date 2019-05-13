@@ -7,9 +7,11 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Patronus.Data;
 using Patronus.Models;
 
 namespace Patronus.Controllers
@@ -57,11 +59,11 @@ namespace Patronus.Controllers
                 try
                 {
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details", "Oeuvres", routeValues: new { id = IdOeuvre });
                 }
                 catch(DbUpdateException e)
                 {
-                    ViewBag.Message = "L'utilisateur a déjà noté l'oeuvre !";
+                    ViewBag.Message = "Vous avez déjà noté l'oeuvre !";
                     db.NoteOeuvres.Remove(noteOeuvre);
                     return View(oeuvre);
                 }  
@@ -166,6 +168,17 @@ namespace Patronus.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        public ActionResult GetMean(long idOeuvre)
+        {
+            var noteData = new NoteData();
+
+            double mean = noteData.GetMeanNote(idOeuvre);
+
+            return Json(mean, JsonRequestBehavior.AllowGet);
+
         }
     }
 }

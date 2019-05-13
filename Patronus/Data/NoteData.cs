@@ -9,10 +9,10 @@ namespace Patronus.Data
     public class NoteData
     {
         private PatronusDBEntities db = new PatronusDBEntities();
-        public double GetMeanNote(Oeuvre oeuvre)
+        public double GetMeanNote(long idOeuvre)
         {
 
-            return db.NoteOeuvres.Where(x => x.IdOeuvre == oeuvre.IdOeuvre).Average(x => x.Note);
+            return Math.Round(db.NoteOeuvres.Where(x => x.IdOeuvre == idOeuvre).Average(x => x.Note),2);
 
         }
         
