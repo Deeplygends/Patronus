@@ -32,6 +32,8 @@ namespace Patronus.Controllers
             {
                 return HttpNotFound();
             }
+            List<long> idoeuvres = db.Participes.Where(m => m.IdArtiste == id).Select(m=>m.IdOeuvre).ToList();
+            artiste.OeuvresRealisees = db.Oeuvres.Where(m => idoeuvres.Contains(m.IdOeuvre)).ToList();
             return View(artiste);
         }
 
