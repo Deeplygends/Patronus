@@ -189,6 +189,7 @@
     <Compile Include="Bootstrap Html Helpers\DatePickerFor.cs" />
     <Compile Include="Bootstrap Html Helpers\HelperMethods.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArtistesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MovieApiController.cs" />
@@ -412,6 +413,11 @@
     <Content Include="Views\Oeuvres\Edit.cshtml" />
     <Content Include="Views\Oeuvres\Index.cshtml" />
     <Content Include="Views\Home\SearchPattern.cshtml" />
+    <Content Include="Views\Artistes\Create.cshtml" />
+    <Content Include="Views\Artistes\Delete.cshtml" />
+    <Content Include="Views\Artistes\Details.cshtml" />
+    <Content Include="Views\Artistes\Edit.cshtml" />
+    <Content Include="Views\Artistes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

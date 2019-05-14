@@ -73,20 +73,22 @@
     </table>
 
     @Html.Hidden("Note")
-    <center><img id="etoile1" onclick="starClick(this);" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" /><img id="etoile2" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" onclick="starClick(this);" width="50" /><img id="etoile3" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" onclick="starClick(this);" /><img id="etoile4" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" onclick="starClick(this);" /><img id="etoile5" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" onclick="starClick(this);" /></center>
-    <br />
-    <table style="margin-left:auto;margin-right:auto">
-        <tr>
-            <td>
-                Note Moyenne : 
-            </td>
-            <td id="mean" style="font-weight:bold;text-align:center"></td>
-            <td>/5</td>
-        </tr>
-    </table>
-    <br />
-    <br />
-
+     if (User.Identity.IsAuthenticated)
+     {
+         <center><img id="etoile1" onclick="starClick(this);" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50"/><img id="etoile2" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" onclick="starClick(this);" width="50"/><img id="etoile3" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" onclick="starClick(this);"/><img id="etoile4" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" onclick="starClick(this);"/><img id="etoile5" src="https://media.cultura.com/media/catalog/product/cache/1/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/f/o/forme-etoile-evidee-50cm-forme-etoile-evidee-50cm-3700408357092_1.jpg" width="50" onclick="starClick(this);"/></center>
+         <br/>
+         <table style="margin-left: auto; margin-right: auto">
+             <tr>
+                 <td>
+                     Note Moyenne :
+                 </td>
+                 <td id="mean" style="font-weight: bold; text-align: center"></td>
+                 <td>/5</td>
+             </tr>
+         </table>
+         <br/>
+         <br/>
+     }
     <h3 style="font-weight:bold;text-align:center">COMMENTAIRES</h3>
     <br />
 
@@ -99,14 +101,19 @@
                 </td>
             </tr>
         }
-        <tr>
-            <td>
-                @Html.TextBox("Commentaire")
-            </td>
-        </tr>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <tr>
+                <td>
+                    @Html.TextBox("Commentaire")
+                </td>
+            </tr>
+        }
     </table>
-
-    <center><button type="submit" style="text-align:center;margin:auto" onclick="moy();">Commenter</button></center>
+    if (User.Identity.IsAuthenticated)
+    {
+        <center><button type="submit" style="text-align: center; margin: auto" onclick="moy();">Commenter</button></center>
+    }
 
 }
 
