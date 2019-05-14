@@ -73,6 +73,7 @@
             <tr>
                 <th>Nom</th>
                 <th>Decription</th>
+                <th></th>
             </tr>
         </thead>
         @foreach (var oeuvre in Model.Artistes)
@@ -83,6 +84,9 @@
                 </td>
                 <td>
                     @oeuvre.Description
+                </td>
+                <td>
+                    @Html.ActionLink("Détails", "Details", "Artistes", new { id = oeuvre.IdArtiste},null)
                 </td>
             </tr>
 
