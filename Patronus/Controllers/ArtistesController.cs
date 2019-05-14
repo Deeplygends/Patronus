@@ -15,7 +15,8 @@ namespace Patronus.Controllers
 {
     public class ArtistesController : Controller
     {
-        private static  PatronusDBEntities db = new PatronusDBEntities();
+        private static  PatronusDBEntities dbs = new PatronusDBEntities();
+        private PatronusDBEntities db = new PatronusDBEntities();
 
         // GET: Artistes
         public ActionResult Index()
@@ -174,7 +175,7 @@ namespace Patronus.Controllers
 
         public static string GetArtistId(string name)
         {
-            Artiste l = db.Artistes.FirstOrDefault(m => m.Nom == name);
+            Artiste l = dbs.Artistes.FirstOrDefault(m => m.Nom == name);
             if (l != null)
             {
                 return l.IdArtiste;
@@ -185,12 +186,12 @@ namespace Patronus.Controllers
                 Nom = name,
                 Prenom = ""
             };
-            db.Artistes.Add(artiste);
-            db.Entry(artiste).State = System.Data.Entity.EntityState.Added;
-            db.SaveChanges();
+            dbs.Artistes.Add(artiste);
+            dbs.Entry(artiste).State = System.Data.Entity.EntityState.Added;
+            dbs.SaveChanges();
 
 
-            l = db.Artistes.FirstOrDefault(m => m.Nom == name);
+            l = dbs.Artistes.FirstOrDefault(m => m.Nom == name);
             return l.IdArtiste;
         }
     }
