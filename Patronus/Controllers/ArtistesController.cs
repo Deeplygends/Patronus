@@ -21,7 +21,7 @@ namespace Patronus.Controllers
         // GET: Artistes
         public ActionResult Index()
         {
-            return View(db.Artistes.ToList());
+            return View(db.Artistes.OrderBy(m=>m.Nom).ToList());
         }
 
         // GET: Artistes/Details/5
