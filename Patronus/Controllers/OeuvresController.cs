@@ -24,7 +24,7 @@ namespace Patronus.Controllers
         public ActionResult Index()
         {
             var oeuvres = db.Oeuvres.Include(o => o.AspNetUser).Include(o => o.TypeOeuvre);
-            return View(oeuvres.ToList());
+            return View(oeuvres.OrderBy(m=>m.Label).ToList());
         }
 
         // GET: Oeuvres/Details/5
