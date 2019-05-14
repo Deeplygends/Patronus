@@ -13,7 +13,8 @@ namespace Patronus.Models
         public string title { get; set; }
         public double duration { get; set; }
 
-        public string link { get; set; }
+        public string picture_xl { get; set; }
+
         public DeezerArtiste artist { get; set; }
         public DeezerAlbum album { get; set; }
     }

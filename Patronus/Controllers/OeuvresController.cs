@@ -173,9 +173,9 @@ namespace Patronus.Controllers
         [HttpPost]
         public ActionResult GetMean(long idOeuvre)
         {
-            var noteData = new NoteData();
+           
 
-            double mean = noteData.GetMeanNote(idOeuvre);
+            double mean = NoteData.GetMeanNote(idOeuvre);
 
             return Json(mean, JsonRequestBehavior.AllowGet);
 

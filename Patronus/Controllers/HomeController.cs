@@ -16,8 +16,13 @@ namespace Patronus.Controllers
         public ActionResult Index()
         {
             var model = GetRecommandation();
-            ViewBag.BestNote = GetBestNote();
-            return View(model);
+            Recommandation reco = new Recommandation();
+            reco.Movies = model.Where(x => x.TypeOeuvre.LabelType.Equals("movies")).ToList();
+            reco.Series= model.Where(x => x.TypeOeuvre.LabelType.Equals("series")).ToList();
+            reco.Albums = model.Where(x => x.TypeOeuvre.LabelType.Equals("Album")).ToList();
+            reco.Tracks = model.Where(x => x.TypeOeuvre.LabelType.Equals("Track")).ToList();
+            reco.BestNote = GetBestNote();
+            return View(reco);
         }
 
         public ActionResult About()
@@ -70,8 +75,11 @@ namespace Patronus.Controllers
                         var favoriUser = u.NoteOeuvres.OrderByDescending(x => x.Note).ToList();
                         foreach (var o in favoriUser.Take(5))
                         {
+                            if (o.Note < 3)
+                                o.Note = -o.Note;
                             if (dicoOeuvre.Keys.Contains(o.Oeuvre))
                             {
+                                
                                 dicoOeuvre[o.Oeuvre] += o.Note;
                             }
                             else
@@ -92,8 +100,9 @@ namespace Patronus.Controllers
         {
             var o = new List<Oeuvre>();
 
-            o = db.Oeuvres.Where(x => x.NoteOeuvres.Count > 0).
-            return o;
+            o = db.Oeuvres.Where(x => x.NoteOeuvres.Any()).ToList();
+            
+            return o.OrderByDescending(x => x.NoteOeuvres.First().Note).Take(5).ToList();
         }
     }
 }

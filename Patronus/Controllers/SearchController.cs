@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Patronus.Controllers
@@ -10,7 +12,7 @@ namespace Patronus.Controllers
     public class SearchController : Controller
     {
         private PatronusDBEntities db = new PatronusDBEntities();
-
+        public static Object InProgress = new Object();
         public ActionResult SearchPattern()
         {
             SearchViewModel s = new SearchViewModel();
@@ -30,17 +32,34 @@ namespace Patronus.Controllers
         {
             model.Oeuvres = new List<Oeuvre>();
             model.Artistes = new List<Artiste>();
+            int majInprogress = 0;
             //maj avec api
-            if (filter == "movie" || filter == "all")
+            TaskFactory task = new TaskFactory();
+            task.StartNew(() => {
+                if (filter == "movie" || filter == "all")
+                {
+                    lock (InProgress)
+                    {
+                        majInprogress++;
+                        List<Oeuvre> mo = new OMDbController().GetAllMovies(model.SearchChainOeuvres);
+                        majInprogress--;
+                    }
+                }
+            });
+            task.StartNew(() =>
             {
-                List<Oeuvre> mo = new OMDbController().GetAllMovies(model.SearchChainOeuvres);
-            }
-
-            if(filter == "music" || filter == "all" || filter=="artist")
-            {
-                //api deezer
-                DeezerController.GetDeezerResult(model.SearchChainOeuvres);
-            }
+                if (filter == "music" || filter == "all" || filter == "artist")
+                {
+                    //api deezer
+                    lock (InProgress)
+                    {
+                        majInprogress++;
+                        DeezerController.GetDeezerResult(model.SearchChainOeuvres);
+                        majInprogress--;
+                    }
+                }
+            });
+          
             //requete de toutes les oeuvres
             if (filter != "artist")
             {
@@ -80,6 +99,7 @@ namespace Patronus.Controllers
                 model.Artistes = db.Artistes.Where(m => String.Concat(m.Nom.ToLower(), " " + m.Prenom.ToLower()).Contains(model.SearchChainOeuvres.ToLower()) || String.Concat(m.Prenom.ToLower(), " " + m.Nom.ToLower()).Contains(model.SearchChainOeuvres.ToLower())).ToList();
             }
 
+            ViewBag.Maj = majInprogress;
             return View(model);
         }
 

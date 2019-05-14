@@ -8,11 +8,11 @@ namespace Patronus.Data
 {
     public class NoteData
     {
-        private PatronusDBEntities db = new PatronusDBEntities();
-        public double GetMeanNote(long idOeuvre)
+        private static PatronusDBEntities db = new PatronusDBEntities();
+        public static double GetMeanNote(long idOeuvre)
         {
             var tmp = db.NoteOeuvres.Where(x => x.IdOeuvre == idOeuvre);
-            if (tmp.Count() > 0)
+            if (tmp.Any())
             {
                 var mean = tmp.Average(x => x.Note);
                 return Math.Round(mean, 2);

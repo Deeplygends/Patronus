@@ -254,6 +254,7 @@
     <Compile Include="Models\Participe.cs">
       <DependentUpon>DataBase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Recommandation.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\Theme.cs">
       <DependentUpon>DataBase.tt</DependentUpon>
@@ -262,6 +263,7 @@
       <DependentUpon>DataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\_Artiste.cs" />
+    <Compile Include="Models\_Oeuvre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Controllers\ArtistController.cs" />
@@ -409,6 +411,7 @@
     <Content Include="Views\Oeuvres\Details.cshtml" />
     <Content Include="Views\Oeuvres\Edit.cshtml" />
     <Content Include="Views\Oeuvres\Index.cshtml" />
+    <Content Include="Views\Home\SearchPattern.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,34 +1,175 @@
-﻿@{
+﻿@model Patronus.Models.Recommandation
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    @{ Html.RenderAction("SearchPattern","Search");}
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-    
-      
+    <div class="col-md-1"></div>
+    @if (Model.Movies.Any())
+    {
+        <div class="jumbotron">
+            <div class="row">
+                <h3><span class="glyphicon glyphicon-blackboard"></span>  Les meilleurs films</h3>
+                @foreach (var oeuvre in Model.Movies)
+                {
+                    <div class="col-md-2 col-xs-2 col-lg-2 text-center">
+                        <img src="@oeuvre.UrlImage" class="img-thumbnail" />
+                        <label class="center-block">@oeuvre.Label</label>
+                        <div class="row bottom">
+                            @for (int j = 0; j < oeuvre.mean; j++)
+                            {
+                                
+                                <span class="glyphicon-star" style="background: goldenrod"></span>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    @if (Model.Series.Any())
+    {
+        <div class="row">
+            <h3><span class="glyphicon glyphicon-blackboard"></span>  Les meilleurs albums</h3>
+            @foreach (var oeuvre in Model.Series)
+            {
+                <div class="col-md-2 col-xs-2 col-lg-2 text-center">
+                    <img src="@oeuvre.UrlImage" class="img-thumbnail"/>
+                    <label class="center-block">@oeuvre.Label</label>
+                    <div class="row bottom">
+                        @for (int j = 0; j < oeuvre.mean; j++)
+                        {
+                            if (j + 1 > oeuvre.mean)
+                            {
+                                <div class="restStar" style="width:10px; height: 100%; display: inline-block; overflow: no-display" >
+                                    <span class="glyphicon glyphicon-star" style="color: goldenrod; width:10px;"></span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div style="width: 10px; height: 100%; display: inline-block" >
+                                    <span class="glyphicon glyphicon-star" style="color: goldenrod;width:10px"></span>
+                                </div>
+                            }
+                                   
+
+                        }
+                        @oeuvre.mean / 5
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    @if (Model.Albums.Any())
+    {
+        <div class="row">
+            <h3><span class="glyphicon glyphicon-equalizer"></span>  Les meilleurs albums</h3>
+            @foreach (var oeuvre in Model.Albums)
+            {
+                <div class="col-md-2 col-xs-2 col-lg-2 text-center">
+                    <img src="@oeuvre.UrlImage" class="img-thumbnail"/>
+                    <label class="center-block">@oeuvre.Label</label>
+                    <div class="row bottom">
+                        @for (int j = 0; j < oeuvre.mean; j++)
+                        {
+                            if (j + 1 > oeuvre.mean)
+                            {
+                                <div class="restStar" style="width:10px; height: 100%; display: inline-block; overflow: no-display" >
+                                    <span class="glyphicon glyphicon-star" style="color: goldenrod; width:10px;"></span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div style="width: 10px; height: 100%; display: inline-block" >
+                                    <span class="glyphicon glyphicon-star" style="color: goldenrod;width:10px"></span>
+                                </div>
+                            }
+                                   
+
+                        }
+                        @oeuvre.mean / 5
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    @if (Model.Tracks.Any())
+    {
+        <div class="row">
+            <h3><span class="glyphicon glyphicon-headphones"></span>  Les oeuvres les plus populaires</h3>
+        @foreach (var oeuvre in Model.Tracks)
+        {
+            <div class="col-md-2 col-xs-2 col-lg-2 text-center">
+                <img src="@oeuvre.UrlImage" class="img-thumbnail"/>
+                <label class="center-block">@oeuvre.Label</label>
+                <div class="row">
+                    @for (int j = 0; j < oeuvre.mean; j++)
+                    {
+                        if (j + 1 > oeuvre.mean)
+                        {
+                            <div class="restStar" style="width:10px; height: 100%; display: inline-block; overflow: no-display" >
+                                <span class="glyphicon glyphicon-star" style="color: goldenrod; width:10px;"></span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div style="width: 10px; height: 100%; display: inline-block" >
+                                <span class="glyphicon glyphicon-star" style="color: goldenrod;width:10px"></span>
+                            </div>
+                        }
+                                   
+
+                    }
+                    @oeuvre.mean / 5
+                </div>
+            </div>
+        }
+        </div>
+    }
+    @if (Model.BestNote.Any())
+    {
+        <div class="row">
+            <h3><span class="glyphicon glyphicon-star"></span>  Les oeuvres les plus populaires</h3>
+             @foreach (var oeuvre in Model.BestNote)
+            {
+                <div class="col-md-2 col-xs-2 col-lg-2 text-center">
+                    <img src="@oeuvre.UrlImage" class="img-thumbnail"/>
+                    <label class="center-block">@oeuvre.Label</label>
+                   
+                            <div class="row bottom">
+                                @for (int j = 0; j < oeuvre.mean; j++)
+                                {
+                                    if (j + 1 > oeuvre.mean)
+                                    {
+                                        <div class="restStar" style="width:10px; height: 100%; display: inline-block; overflow: no-display" >
+                                            <span class="glyphicon glyphicon-star" style="color: goldenrod; width:10px;"></span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div style="width: 10px; height: 100%; display: inline-block" >
+                                            <span class="glyphicon glyphicon-star" style="color: goldenrod;width:10px"></span>
+                                        </div>
+                                    }
+                                   
+
+                                }
+                                @oeuvre.mean / 5
+                      </div>
+                 </div>
+                
+            }
+        </div>
+    }
+    else
+    {
+        <label> Aucune note pour l'instant ...</label>
+    }
+    <div class="col-md-1"></div>
+
 </div>
 

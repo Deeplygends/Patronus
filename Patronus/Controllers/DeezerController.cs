@@ -13,6 +13,7 @@ namespace Patronus.Controllers
     public class DeezerController : Controller
     {
         private  static PatronusDBEntities db = new PatronusDBEntities();
+       
         public static JsonDeezer GetDeezerResult(string title)
         {
             string parameters = "";
@@ -54,7 +55,7 @@ namespace Patronus.Controllers
                     DateAjout = DateTime.Now,
                     IdAPI = element.id.ToString() + "D",
                     TypeOeuvre = type,
-                    UrlImage = element.link,
+                    UrlImage = element.picture_xl,
                     IdContributeur = "IDapiDeezer",
                     Label = element.title
                 };
@@ -128,6 +129,7 @@ namespace Patronus.Controllers
                     IdContributeur = "IDapiDeezer",
                     UrlImage = element.album.cover_xl
                 };
+                o.UrlImage = alb.UrlImage;
                 alb.Enfants.Add(o);
 
                 if (db.Oeuvres.FirstOrDefault(x => x.IdAPI.Equals(element.album.id.ToString() + "D")) == null)
