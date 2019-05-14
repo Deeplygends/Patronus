@@ -283,13 +283,13 @@ namespace Patronus.Controllers
             String[] directors = JSONObj["Director"].Split(',');
             foreach (String d in directors)
             {
-                var idartist = ArtistController.GetArtistId(d);
+                var idartist = ArtistesController.GetArtistId(d);
                 if(db.Participes.FirstOrDefault(m=>m.IdArtiste == idartist && m.IdOeuvre == movie.IdOeuvre) == null)
                 {
 
                     Participe participe = new Participe()
                     {
-                        IdArtiste = ArtistController.GetArtistId(d),
+                        IdArtiste = ArtistesController.GetArtistId(d),
                         IdOeuvre = movie.IdOeuvre,
                         role = "director"
                     };
@@ -316,12 +316,12 @@ namespace Patronus.Controllers
             String[] writers = JSONObj["Writer"].Split(',');
             foreach (String w in writers)
             {
-                var idartist = ArtistController.GetArtistId(w);
+                var idartist = ArtistesController.GetArtistId(w);
                 if (db.Participes.FirstOrDefault(m => m.IdArtiste == idartist && m.IdOeuvre == movie.IdOeuvre) == null)
                 {
                     Participe participe = new Participe()
                     {
-                        IdArtiste = ArtistController.GetArtistId(w),
+                        IdArtiste = ArtistesController.GetArtistId(w),
                         IdOeuvre = movie.IdOeuvre,
                         role = "writer"
                     };
@@ -348,12 +348,12 @@ namespace Patronus.Controllers
             String[] actors = JSONObj["Actors"].Split(',');
             foreach (String a in actors)
             {
-                var idartist = ArtistController.GetArtistId(a);
+                var idartist = ArtistesController.GetArtistId(a);
                 if (db.Participes.FirstOrDefault(m => m.IdArtiste == idartist && m.IdOeuvre == movie.IdOeuvre) == null)
                 {
                     Participe participe = new Participe()
                     {
-                        IdArtiste = ArtistController.GetArtistId(a),
+                        IdArtiste = ArtistesController.GetArtistId(a),
                         IdOeuvre = movie.IdOeuvre,
                         role = "actor"
                     };
