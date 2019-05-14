@@ -46,7 +46,7 @@ namespace Patronus.Controllers
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdArtiste,Nom,Prenom,DateNaissance,Description")] Artiste artiste)
+        public ActionResult Create([Bind(Include = "IdArtiste,Nom")] Artiste artiste)
         {
             artiste.IdArtiste = artiste.Nom;
             if (ModelState.IsValid)
