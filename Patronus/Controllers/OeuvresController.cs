@@ -63,9 +63,10 @@ namespace Patronus.Controllers
                 }
                 catch(DbUpdateException e)
                 {
-                    ViewBag.Message = "Vous avez déjà noté l'oeuvre !";
                     db.NoteOeuvres.Remove(noteOeuvre);
-                    return View(oeuvre);
+                    db.Entry(noteOeuvre).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Details", "Oeuvres", routeValues: new { id = IdOeuvre });
                 }  
                 
             }

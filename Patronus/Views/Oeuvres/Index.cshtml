@@ -6,9 +6,13 @@
 
 <h2>Liste des oeuvres</h2>
 
+@if (Context.User.Identity.IsAuthenticated)
+{
 <p>
     @Html.ActionLink("Ajouter une oeuvre", "Create")
 </p>
+}
+
 <table class="table">
     <tr>
         <th></th>
@@ -51,10 +55,16 @@
         @Html.DisplayFor(modelItem => item.TypeOeuvre.LabelType)
     </td>
     <td>
-        @Html.ActionLink("Modifier", "Edit", new { id = item.IdOeuvre }, new { @class = "btn" }) |
-        @Html.ActionLink("Détails", "Details", new { id = item.IdOeuvre }, new { @class = "btn" }) |
-        @Html.ActionLink("Supprimer", "Delete", new { id = item.IdOeuvre }, new { @class = "btn" })
-    </td>
+        @if (item.AspNetUser.UserName == Context.User.Identity.Name)
+        {
+            @Html.ActionLink("Modifier", "Edit", new { id = item.IdOeuvre }, new { @class = "btn" })
+        }
+        @Html.ActionLink("Détails", "Details", new { id = item.IdOeuvre }, new { @class = "btn" })
+        @if (item.AspNetUser.UserName == Context.User.Identity.Name)
+        {
+            @Html.ActionLink("Supprimer", "Delete", new { id = item.IdOeuvre }, new { @class = "btn" })
+        }
+        </td>
 </tr>
 }
 

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Patronus.Models.Artiste>
+
+@{
+    ViewBag.Title = "Liste des artistes";
+}
+
+<h2>Liste des artistes</h2>
+@if (Context.User.Identity.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Ajouter un artiste", "Create")
+    </p>
+}
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom)
+            </th>
+            <th>
+                @Html.DisplayName("Prénom")
+            </th>
+            <th>
+                @Html.DisplayName("Date de naissance")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prenom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateNaissance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @if (Context.User.Identity.IsAuthenticated)
+                    {
+                        @Html.ActionLink("Modifier", "Edit", new { id = item.IdArtiste }, new { @class = "btn" })
+                    }
+                    @Html.ActionLink("Détails", "Details", new { id = item.IdArtiste }, new { @class = "btn" })
+                    @if (Context.User.Identity.IsAuthenticated)
+                    {
+                        @Html.ActionLink("Supprimer", "Delete", new { id = item.IdArtiste }, new { @class = "btn" })
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>

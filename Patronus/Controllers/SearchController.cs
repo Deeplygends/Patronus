@@ -89,7 +89,7 @@ namespace Patronus.Controllers
 
             if (filter == "music")
             {
-                model.Oeuvres = model.Oeuvres.Where(m => m.TypeOeuvre.LabelType == "music" || m.TypeOeuvre.LabelType == "track" || m.TypeOeuvre.LabelType == "album").ToList();
+                model.Oeuvres = model.Oeuvres.Where(m => m.TypeOeuvre.LabelType == "music" || m.TypeOeuvre.LabelType == "Track" || m.TypeOeuvre.LabelType == "Album").ToList();
             }
 
             //model.Oeuvres = db.Oeuvres.Where(x => x.Label.Contains(model.SearchChainOeuvres)).ToList();

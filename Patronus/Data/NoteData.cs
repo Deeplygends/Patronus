@@ -20,6 +20,18 @@ namespace Patronus.Data
 
             return 0;
         }
-        
+
+        public double GetMeanNoteArtiste(string idArtiste)
+        {
+            var tmp = db.NoteArtistes.Where(x => x.IdArtiste == idArtiste);
+            if (tmp.Count() > 0)
+            {
+                var mean = tmp.Average(x => x.Note);
+                return Math.Round(mean, 2);
+            }
+
+            return 0;
+        }
+
     }
 }
