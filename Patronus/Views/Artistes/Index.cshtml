@@ -32,15 +32,6 @@
             @Html.DisplayFor(modelItem => item.Nom)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Prenom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateNaissance)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
             @Html.ActionLink("Modifier", "Edit", new { id=item.IdArtiste }) |
             @Html.ActionLink("Détails", "Details", new { id=item.IdArtiste }) |
             @Html.ActionLink("Supprimer", "Delete", new { id=item.IdArtiste })

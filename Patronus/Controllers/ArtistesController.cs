@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Patronus.Data;
 using Patronus.Models;
 
 namespace Patronus.Controllers
@@ -35,6 +38,37 @@ namespace Patronus.Controllers
             List<long> idoeuvres = db.Participes.Where(m => m.IdArtiste == id).Select(m=>m.IdOeuvre).ToList();
             artiste.OeuvresRealisees = db.Oeuvres.Where(m => idoeuvres.Contains(m.IdOeuvre)).ToList();
             return View(artiste);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Details(string IdArtiste, string Commentaire, string Note)
+        {
+            Artiste artiste = db.Artistes.Find(IdArtiste);
+
+            if (ModelState.IsValid)
+            {
+                NoteArtiste noteArtiste = new NoteArtiste();
+                noteArtiste.IdUser = User.Identity.GetUserId();
+                noteArtiste.IdArtiste = artiste.IdArtiste;
+                noteArtiste.Note = Double.Parse(Note);
+                noteArtiste.Commentaire = Commentaire;
+                db.NoteArtistes.Add(noteArtiste);
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Details", "Artistes", routeValues: new { id = IdArtiste });
+                }
+                catch (DbUpdateException e)
+                {
+                    db.NoteArtistes.Remove(noteArtiste);
+                    db.Entry(noteArtiste).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Details", "Artistes", routeValues: new { id = IdArtiste });
+                }
+
+            }
+            return RedirectToAction("Details", "Artistes", routeValues: new { id = IdArtiste });
         }
 
         // GET: Artistes/Create
@@ -125,6 +159,17 @@ namespace Patronus.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        public ActionResult GetMean(string idArtiste)
+        {
+            var noteData = new NoteData();
+
+            double mean = noteData.GetMeanNoteArtiste(idArtiste);
+
+            return Json(mean, JsonRequestBehavior.AllowGet);
+
         }
     }
 }
