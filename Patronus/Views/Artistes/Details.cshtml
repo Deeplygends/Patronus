@@ -17,7 +17,59 @@
             @Html.DisplayFor(model => model.Nom)
         </dd>
 
-    </dl>
+        <dt>
+            @Html.DisplayName("Prénom")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prenom)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Date de naissance")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateNaissance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        </dl>
+
+        <h3>Oeuvres auquelles a participé l'artiste</h3>
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>Nom</th>
+                <th>Date de création</th>
+                <th>Type</th>
+                <th></th>
+            </tr>
+            @foreach (var oeuvre in Model.OeuvresRealisees)
+            {
+                <tr>
+                    <td>
+                        <img src=@oeuvre.UrlImage class="list-img" />
+                    </td>
+                    <td>
+                        @oeuvre.Label
+                    </td>
+                    <td>
+                        @oeuvre.DateCreation
+                    </td>
+                    <td>
+                        @oeuvre.TypeOeuvre.LabelType
+                    </td>
+                    <td>@Html.ActionLink("Détails", "Details", "Oeuvres")</td>
+                </tr>
+            }
+        </table>
 </div>
 <p>
     @Html.ActionLink("Modifier", "Edit", new { id = Model.IdArtiste }) |
